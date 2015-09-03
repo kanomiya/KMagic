@@ -1,0 +1,64 @@
+﻿###-- Japanese --###
+tile.blockDummy.name=ダミー
+item.itemDummy.name=ダミー
+
+
+tile.blockMagicStoneOre.name=魔石入りの石
+item.itemMagicStone.name=魔石
+item.itemMagicRod.name=魔短杖
+
+item.itemMagicBoard.name=魔法の石版
+item.itemSwordUgluCiclu.name=ユグルシクル
+
+kmagic.command.miss=コマンドの実行に失敗しました
+kmagic.command.kmagic.usage=[KMagic] 用のコマンドです
+kmagic.command.kmagic.mp=MP %2$s を %1$s に付与しました
+
+death.attack.kmagic.itemSwordUgluCiclu=%1$s はユグルシクルに殺された
+death.attack.kmagic.itemSwordUgluCiclu.player=%1$s は %2$s のユグルシクルに殺された
+
+kmagic.word.cost=コスト
+kmagic.word.maxCost=最大コスト
+
+kmagic.word.amount=量
+kmagic.word.damage=ダメージ
+kmagic.word.efficiency=効率
+
+kmagic.word.size=サイズ
+kmagic.word.sizeIsStatic=サイズ固定
+
+kmagic.word.sizeRate=サイズ効率
+
+
+kmagic.word.trigger=発動条件
+kmagic.word.sneakattack=スニーク攻撃
+kmagic.word.sneakuse=スニーク使用
+
+
+kmagic.ability=能力
+kmagic.ability.none=なし
+kmagic.ability.chargedMp=魔力補充
+kmagic.ability.absorbHealthAsMp=魔力吸収
+kmagic.ability.explosion=爆発
+kmagic.ability.givingFlight=付与(飛行)
+
+kmagic.ability.trigger.itemActivated=使用
+kmagic.ability.trigger.itemEntitySwing=振る
+kmagic.ability.trigger.itemHitEntity=攻撃
+kmagic.ability.trigger.itemLeftClickEntity=攻撃
+kmagic.ability.trigger.itemInteractEntity=作用
+
+
+magicMaterial.magicStoneGray=灰魔石
+magicMaterial.magicStoneRed=赤魔石
+magicMaterial.magicStoneYellow=黄魔石
+magicMaterial.magicStoneGreen=緑魔石
+magicMaterial.magicStoneBlue=青魔石
+
+magicMaterial.wood=木
+
+
+
+kmagic.container.magicFurnace=魔法かまど
+
+

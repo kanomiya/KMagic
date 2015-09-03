@@ -1,0 +1,6 @@
+{
+    "parent": "kmagic:block/blockMagicStoneOre",
+    "textures": {
+        "all": "kmagic:blocks/blockMagicStoneOre_gray"
+    }
+}

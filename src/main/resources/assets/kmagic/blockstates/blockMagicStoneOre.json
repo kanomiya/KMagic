@@ -1,0 +1,9 @@
+{
+	"variants": {
+		"type=magicstonegray": { "model": "kmagic:blockMagicStoneOre_magicStoneGray" },
+		"type=magicstonered": { "model": "kmagic:blockMagicStoneOre_magicStoneRed" },
+		"type=magicstoneyellow": { "model": "kmagic:blockMagicStoneOre_magicStoneYellow" },
+		"type=magicstonegreen": { "model": "kmagic:blockMagicStoneOre_magicStoneGreen" },
+		"type=magicstoneblue": { "model": "kmagic:blockMagicStoneOre_magicStoneBlue" }
+	}
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "kmagic:item/itemMagicRod_wood",
+    "textures": {
+        "layer1": "kmagic:items/itemMagicRod_head_green"
+    }
+}
+

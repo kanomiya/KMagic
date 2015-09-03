@@ -1,0 +1,6 @@
+{
+    "parent": "kmagic:item/itemMagicRod",
+    "textures": {
+        "layer0": "kmagic:items/itemMagicRod_head_green"
+    }
+}

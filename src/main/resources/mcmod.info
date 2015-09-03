@@ -1,0 +1,16 @@
+[
+{
+	"modid": "kmagic",
+	"name": "KMagic",
+	"description": "Magic Mod",
+	"version": "alpha0.4.0",
+	"mcversion": "1.8",
+	"url": "http://kanomiya.com/",
+	"updateUrl": "",
+	"authors": ["Kanomiya"],
+	"credits": "Kanomiya",
+	"logoFile": "",
+	"screenshots": [],
+	"dependencies": []
+}
+]

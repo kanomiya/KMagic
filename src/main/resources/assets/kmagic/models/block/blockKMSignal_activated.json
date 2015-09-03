@@ -1,0 +1,6 @@
+{
+    "parent": "kmagic:block/blockKMSignal",
+    "textures": {
+        "all": "kmagic:blocks/blockKMSignal_activated"
+    }
+}

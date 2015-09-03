@@ -1,0 +1,7 @@
+{
+    "parent": "kmagic:item/itemMagicStone",
+    "textures": {
+        "layer0": "kmagic:items/itemMagicStone_green"
+    }
+}
+

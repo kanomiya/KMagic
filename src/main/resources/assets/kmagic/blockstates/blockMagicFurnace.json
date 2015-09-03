@@ -1,0 +1,14 @@
+{
+    "variants": {
+        "burning=false,facing=north": { "model": "furnace" },
+        "burning=false,facing=south": { "model": "furnace", "y": 180 },
+        "burning=false,facing=west":  { "model": "furnace", "y": 270 },
+        "burning=false,facing=east":  { "model": "furnace", "y": 90 },
+        
+        "burning=true,facing=north": { "model": "lit_furnace" },
+        "burning=true,facing=south": { "model": "lit_furnace", "y": 180 },
+        "burning=true,facing=west":  { "model": "lit_furnace", "y": 270 },
+        "burning=true,facing=east":  { "model": "lit_furnace", "y": 90 }
+        
+    }
+}

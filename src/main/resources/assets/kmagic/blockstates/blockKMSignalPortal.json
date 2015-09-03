@@ -1,0 +1,6 @@
+{
+	"variants": {
+		"activated=false": { "model": "kmagic:blockKMSignalPortal" },
+		"activated=true": { "model": "kmagic:blockKMSignalPortal_activated" }
+	}
+}

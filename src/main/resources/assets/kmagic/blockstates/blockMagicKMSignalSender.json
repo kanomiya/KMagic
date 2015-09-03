@@ -1,0 +1,6 @@
+{
+	"variants": {
+		"activated=false": { "model": "kmagic:blockMagicKMSignalSender" },
+		"activated=true": { "model": "kmagic:blockMagicKMSignalSender_activated" }
+	}
+}
