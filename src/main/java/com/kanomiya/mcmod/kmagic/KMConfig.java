@@ -1,8 +1,7 @@
 package com.kanomiya.mcmod.kmagic;
 
-import java.io.File;
-
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 /**
  * @author Kanomiya
@@ -13,8 +12,8 @@ public class KMConfig {
 	public static int DIMID_KMAGIC = 57;
 
 
-	public static void init(File configfile) {
-		Configuration config = new Configuration(configfile);
+	public static void preInit(FMLPreInitializationEvent event) {
+		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 
 		try {
 			config.load();

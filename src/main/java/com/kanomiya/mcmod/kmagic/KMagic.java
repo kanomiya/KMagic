@@ -1,5 +1,25 @@
 package com.kanomiya.mcmod.kmagic;
 
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.stats.AchievementList;
+import net.minecraft.stats.StatList;
+import net.minecraft.world.gen.structure.MapGenStructureIO;
+import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import org.apache.logging.log4j.Logger;
 
 import com.kanomiya.mcmod.kmagic.client.event.ClientTickEventHandler;
@@ -13,27 +33,12 @@ import com.kanomiya.mcmod.kmagic.magic.event.MagicSpellEventHandler;
 import com.kanomiya.mcmod.kmagic.magic.event.MagicStatusEventHandler;
 import com.kanomiya.mcmod.kmagic.magic.material.MagicMaterial;
 import com.kanomiya.mcmod.kmagic.magic.status.RegistryMSRating;
-import com.kanomiya.mcmod.kmagic.network.message.PacketHandler;
-import com.kanomiya.mcmod.kmagic.proxy.CommonProxy;
+import com.kanomiya.mcmod.kmagic.network.PacketHandler;
 import com.kanomiya.mcmod.kmagic.stat.MagicStatList;
 import com.kanomiya.mcmod.kmagic.world.WorldProviderKMagic;
 import com.kanomiya.mcmod.kmagic.world.gen.biome.BiomeRichMEManager;
 import com.kanomiya.mcmod.kmagic.world.gen.structure.PopulateChunkEventHandler;
 import com.kanomiya.mcmod.kmagic.world.gen.structure.StructureMagicGate;
-
-import net.minecraft.stats.AchievementList;
-import net.minecraft.stats.StatList;
-import net.minecraft.world.gen.structure.MapGenStructureIO;
-import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 /**
  *
@@ -50,17 +55,34 @@ public class KMagic {
 
 	public static Logger logger;
 
-	public static KMagicTab tab = new KMagicTab();
+	public static CreativeTabs tab = new CreativeTabs(MODID) {
+		ItemStack iconItemStack;
 
-	@SidedProxy(modId=MODID, clientSide="com.kanomiya.mcmod.kmagic.proxy.ClientProxy", serverSide="com.kanomiya.mcmod.kmagic.proxy.CommonProxy")
-	public static CommonProxy proxy;
+		@Override @SideOnly(Side.CLIENT)
+		public ItemStack getIconItemStack() {
+			if (iconItemStack == null) {
+				iconItemStack = new ItemStack(getTabIconItem(), 1, 4);
+
+				NBTTagCompound nbt = KMagicAPI.getMagicNBT(iconItemStack);
+				nbt.setBoolean("invisibleMpBar", true);
+
+				KMagicAPI.setMagicNBT(iconItemStack, nbt);
+			}
+
+			return iconItemStack;
+		}
+
+		@Override public Item getTabIconItem() {
+			return KMItems.itemMagicStone;
+		}
+	};
 
 
 	@EventHandler public void preInit(FMLPreInitializationEvent event) {
 		logger = event.getModLog();
-		proxy.preInit();
 
-		KMConfig.init(event.getSuggestedConfigurationFile());
+		KMKeys.init();
+		KMConfig.preInit(event);
 
 		boolean client = event.getSide().isClient();
 
@@ -78,8 +100,8 @@ public class KMagic {
 		registerRatingStat();
 		registerMagicMaterial();
 
-		KMItems.init(client);
-		KMBlocks.init(client);
+		KMItems.preInit(event);
+		KMBlocks.preInit(event);
 
 		DimensionManager.registerProviderType(KMConfig.DIMID_KMAGIC, WorldProviderKMagic.class, false);
 		DimensionManager.registerDimension(KMConfig.DIMID_KMAGIC, KMConfig.DIMID_KMAGIC);
@@ -87,12 +109,13 @@ public class KMagic {
 	}
 
 	@EventHandler public void init(FMLInitializationEvent event) {
-		proxy.init();
 
 		PacketHandler.init();
 		MinecraftForge.EVENT_BUS.register(MagicStatusEventHandler.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(MagicSpellEventHandler.INSTANCE);
 
+		KMItems.init(event);
+		KMBlocks.init(event);
 
 
 		MinecraftForge.TERRAIN_GEN_BUS.register(new PopulateChunkEventHandler());
@@ -106,13 +129,15 @@ public class KMagic {
 
 	}
 
-	/*
+
 	@EventHandler public void postInit(FMLPostInitializationEvent event) {
+
+		KMItems.postInit(event);
+		KMBlocks.postInit(event);
 
 		// if (Loader.isModLoaded("NotEnoughItems")) { codechicken.nei.api.API. }
 
 	}
-	*/
 
 
 	@EventHandler public void serverStarting(FMLServerStartingEvent event){

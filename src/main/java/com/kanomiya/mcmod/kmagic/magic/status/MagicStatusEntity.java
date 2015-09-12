@@ -3,8 +3,8 @@ package com.kanomiya.mcmod.kmagic.magic.status;
 import com.kanomiya.mcmod.kmagic.KMagicAPI;
 import com.kanomiya.mcmod.kmagic.magic.ability.MANaturalMpHealing;
 import com.kanomiya.mcmod.kmagic.magic.status.base.IMagicObject;
-import com.kanomiya.mcmod.kmagic.network.message.MessageMagicStatusToClient;
-import com.kanomiya.mcmod.kmagic.network.message.PacketHandler;
+import com.kanomiya.mcmod.kmagic.network.MessageMagicStatusToClient;
+import com.kanomiya.mcmod.kmagic.network.PacketHandler;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;

@@ -1,4 +1,4 @@
-package com.kanomiya.mcmod.kmagic.network.message;
+package com.kanomiya.mcmod.kmagic.network;
 
 import com.kanomiya.mcmod.kmagic.KMagic;
 

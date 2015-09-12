@@ -1,18 +1,18 @@
-package com.kanomiya.mcmod.kmagic.block.itemblock;
-
-import com.kanomiya.mcmod.kmagic.block.BlockMagicStoneOre;
+package com.kanomiya.mcmod.kmagic.item;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
+
+import com.kanomiya.mcmod.core.item.ItemBlockDamaged;
+import com.kanomiya.mcmod.kmagic.block.BlockMagicStoneOre;
 
 /**
  * @author Kanomiya
  *
  */
 
-public class ItemBlockMagicStoneOre extends ItemBlock {
+public class ItemBlockMagicStoneOre extends ItemBlockDamaged {
 
 	public ItemBlockMagicStoneOre(Block block) {
 		super(block);
@@ -25,9 +25,6 @@ public class ItemBlockMagicStoneOre extends ItemBlock {
 		return super.getItemStackDisplayName(stack) + " [" + StatCollector.translateToLocal(type.material.getUnlocalizedName()) + "]";
 	}
 
-	@Override public int getMetadata(int damage) {
-		return damage;
-	}
 
 
 }
