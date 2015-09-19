@@ -2,10 +2,10 @@ package com.kanomiya.mcmod.kmagic.client.gui;
 
 import java.util.Random;
 
-import com.kanomiya.mcmod.kmagic.KMagicAPI;
-import com.kanomiya.mcmod.kmagic.magic.status.MagicStatus;
-import com.kanomiya.mcmod.kmagic.magic.status.MagicStatusEntity;
-import com.kanomiya.mcmod.kmagic.magic.status.base.IMagicItem;
+import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusEntity;
+import com.kanomiya.mcmod.kmagic.api.magic.status.base.IMagicItem;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;

@@ -1,8 +1,9 @@
 package com.kanomiya.mcmod.kmagic.magic.ability;
 
-import com.kanomiya.mcmod.kmagic.magic.status.MagicStatus;
-import com.kanomiya.mcmod.kmagic.magic.status.MagicStatusPlayer;
-import com.kanomiya.mcmod.kmagic.magic.status.wrapper.PlayerWrapper;
+import com.kanomiya.mcmod.kmagic.api.magic.ability.MagicAbility;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusPlayer;
+import com.kanomiya.mcmod.kmagic.api.magic.status.wrapper.PlayerWrapper;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;

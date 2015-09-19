@@ -1,11 +1,14 @@
 package com.kanomiya.mcmod.kmagic.tileentity.signal;
 
-import com.kanomiya.mcmod.kmagic.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterial;
+import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterials;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
+import com.kanomiya.mcmod.kmagic.api.tileentity.TileEntityMagicBase;
+import com.kanomiya.mcmod.kmagic.api.tileentity.signal.IKMSignal;
+import com.kanomiya.mcmod.kmagic.api.tileentity.signal.SignalData;
+import com.kanomiya.mcmod.kmagic.api.tileentity.signal.SignalUtils;
 import com.kanomiya.mcmod.kmagic.block.BlockMagicKMSignalSender;
-import com.kanomiya.mcmod.kmagic.magic.material.MagicMaterial;
-import com.kanomiya.mcmod.kmagic.magic.material.MagicMaterials;
-import com.kanomiya.mcmod.kmagic.magic.status.MagicStatus;
-import com.kanomiya.mcmod.kmagic.tileentity.TileEntityMagicBase;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;

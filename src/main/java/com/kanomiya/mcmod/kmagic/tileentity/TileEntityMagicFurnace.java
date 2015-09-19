@@ -1,10 +1,11 @@
 package com.kanomiya.mcmod.kmagic.tileentity;
 
-import com.kanomiya.mcmod.kmagic.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterial;
+import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterials;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
+import com.kanomiya.mcmod.kmagic.api.tileentity.TileEntityMagicBase;
 import com.kanomiya.mcmod.kmagic.block.BlockMagicFurnace;
-import com.kanomiya.mcmod.kmagic.magic.material.MagicMaterial;
-import com.kanomiya.mcmod.kmagic.magic.material.MagicMaterials;
-import com.kanomiya.mcmod.kmagic.magic.status.MagicStatus;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;

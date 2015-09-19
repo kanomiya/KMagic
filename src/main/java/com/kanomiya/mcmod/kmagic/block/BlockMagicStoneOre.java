@@ -6,9 +6,9 @@ import java.util.Random;
 
 import com.kanomiya.mcmod.kmagic.KMItems;
 import com.kanomiya.mcmod.kmagic.KMagic;
-import com.kanomiya.mcmod.kmagic.KMagicAPI;
-import com.kanomiya.mcmod.kmagic.magic.material.MagicMaterial;
-import com.kanomiya.mcmod.kmagic.util.IHasModel;
+import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterial;
+import com.kanomiya.mcmod.kmagic.api.util.IHasModel;
 
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.properties.IProperty;

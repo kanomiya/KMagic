@@ -6,8 +6,8 @@ package com.kanomiya.mcmod.kmagic.client.gui;
 import java.util.List;
 
 import com.google.common.collect.Lists;
-import com.kanomiya.mcmod.kmagic.magic.ability.MagicAbility;
-import com.kanomiya.mcmod.kmagic.magic.status.MagicAbilityHolder;
+import com.kanomiya.mcmod.kmagic.api.magic.ability.MagicAbility;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicAbilityHolder;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiListExtended;

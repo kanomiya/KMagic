@@ -3,9 +3,10 @@ package com.kanomiya.mcmod.kmagic.block;
 import java.util.Random;
 
 import com.kanomiya.mcmod.kmagic.KMagic;
-import com.kanomiya.mcmod.kmagic.magic.status.MagicStatus;
-import com.kanomiya.mcmod.kmagic.tileentity.TileEntityMagicBase;
-import com.kanomiya.mcmod.kmagic.tileentity.signal.SignalData;
+import com.kanomiya.mcmod.kmagic.api.block.BlockMagicBase;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
+import com.kanomiya.mcmod.kmagic.api.tileentity.TileEntityMagicBase;
+import com.kanomiya.mcmod.kmagic.api.tileentity.signal.SignalData;
 import com.kanomiya.mcmod.kmagic.tileentity.signal.TileEntityMagicKMSignalSender;
 
 import net.minecraft.block.material.Material;

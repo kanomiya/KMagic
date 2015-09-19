@@ -1,7 +1,7 @@
 package com.kanomiya.mcmod.kmagic.network;
 
-import com.kanomiya.mcmod.kmagic.KMagicAPI;
-import com.kanomiya.mcmod.kmagic.magic.status.MagicStatusEntity;
+import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusEntity;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;

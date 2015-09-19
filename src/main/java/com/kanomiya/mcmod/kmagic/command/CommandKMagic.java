@@ -3,8 +3,8 @@ package com.kanomiya.mcmod.kmagic.command;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.kanomiya.mcmod.kmagic.KMagicAPI;
-import com.kanomiya.mcmod.kmagic.magic.status.MagicStatus;
+import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;

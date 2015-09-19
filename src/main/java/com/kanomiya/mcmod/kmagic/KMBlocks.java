@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import com.kanomiya.mcmod.kanomiyacore.KanomiyaCore;
 import com.kanomiya.mcmod.kanomiyacore.util.GameRegistryUtils;
+import com.kanomiya.mcmod.kmagic.api.util.ModelUtils;
 import com.kanomiya.mcmod.kmagic.block.BlockKMSignalPortal;
 import com.kanomiya.mcmod.kmagic.block.BlockKMSignalRepeater;
 import com.kanomiya.mcmod.kmagic.block.BlockMagicFurnace;
@@ -18,7 +19,6 @@ import com.kanomiya.mcmod.kmagic.tileentity.TileEntityMagicFurnace;
 import com.kanomiya.mcmod.kmagic.tileentity.signal.TileEntityKMSignalPortal;
 import com.kanomiya.mcmod.kmagic.tileentity.signal.TileEntityKMSignalRepeater;
 import com.kanomiya.mcmod.kmagic.tileentity.signal.TileEntityMagicKMSignalSender;
-import com.kanomiya.mcmod.kmagic.util.ModelUtils;
 
 /**
  * @author Kanomiya

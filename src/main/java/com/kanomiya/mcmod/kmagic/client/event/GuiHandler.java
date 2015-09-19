@@ -1,6 +1,6 @@
 package com.kanomiya.mcmod.kmagic.client.event;
 
-import com.kanomiya.mcmod.kmagic.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
 import com.kanomiya.mcmod.kmagic.client.gui.GuiAbilityHolder;
 import com.kanomiya.mcmod.kmagic.client.gui.GuiMagicFurnace;
 import com.kanomiya.mcmod.kmagic.inventory.ContainerMagicFurnace;

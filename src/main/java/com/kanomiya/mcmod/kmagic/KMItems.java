@@ -7,8 +7,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import com.kanomiya.mcmod.kanomiyacore.KanomiyaCore;
 import com.kanomiya.mcmod.kanomiyacore.util.GameRegistryUtils;
+import com.kanomiya.mcmod.kmagic.api.util.ModelUtils;
 import com.kanomiya.mcmod.kmagic.item.ItemMagicStone;
-import com.kanomiya.mcmod.kmagic.util.ModelUtils;
 
 /**
  * @author Kanomiya

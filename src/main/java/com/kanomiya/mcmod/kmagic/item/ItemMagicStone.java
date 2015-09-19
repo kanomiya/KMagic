@@ -3,12 +3,13 @@ package com.kanomiya.mcmod.kmagic.item;
 import java.util.List;
 
 import com.kanomiya.mcmod.kmagic.KMagic;
-import com.kanomiya.mcmod.kmagic.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.item.ItemMagicBase;
+import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterial;
+import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterials;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
+import com.kanomiya.mcmod.kmagic.api.util.IHasModel;
 import com.kanomiya.mcmod.kmagic.client.event.GuiHandler;
-import com.kanomiya.mcmod.kmagic.magic.material.MagicMaterial;
-import com.kanomiya.mcmod.kmagic.magic.material.MagicMaterials;
-import com.kanomiya.mcmod.kmagic.magic.status.MagicStatus;
-import com.kanomiya.mcmod.kmagic.util.IHasModel;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;

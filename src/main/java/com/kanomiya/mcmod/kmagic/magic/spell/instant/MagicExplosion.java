@@ -1,7 +1,8 @@
 package com.kanomiya.mcmod.kmagic.magic.spell.instant;
 
-import com.kanomiya.mcmod.kmagic.KMagicAPI;
-import com.kanomiya.mcmod.kmagic.magic.status.MagicStatus;
+import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.magic.spell.instant.InstantMagicBase;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;

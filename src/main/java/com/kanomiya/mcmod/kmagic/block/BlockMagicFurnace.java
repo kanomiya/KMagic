@@ -4,8 +4,9 @@ import java.util.Random;
 
 import com.kanomiya.mcmod.kmagic.KMBlocks;
 import com.kanomiya.mcmod.kmagic.KMagic;
-import com.kanomiya.mcmod.kmagic.magic.status.MagicStatus;
-import com.kanomiya.mcmod.kmagic.tileentity.TileEntityMagicBase;
+import com.kanomiya.mcmod.kmagic.api.block.BlockMagicBase;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
+import com.kanomiya.mcmod.kmagic.api.tileentity.TileEntityMagicBase;
 import com.kanomiya.mcmod.kmagic.tileentity.TileEntityMagicFurnace;
 
 import net.minecraft.block.Block;
