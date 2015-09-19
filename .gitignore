@@ -20,6 +20,7 @@ build.gradle
 .settings/
 bin/
 build/
+libs/
 
 # System Files #
 *.db
