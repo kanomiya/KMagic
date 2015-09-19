@@ -6,7 +6,8 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import com.kanomiya.mcmod.core.util.GameRegistryUtils;
+import com.kanomiya.mcmod.kanomiyacore.KanomiyaCore;
+import com.kanomiya.mcmod.kanomiyacore.util.GameRegistryUtils;
 import com.kanomiya.mcmod.kmagic.block.BlockKMSignalPortal;
 import com.kanomiya.mcmod.kmagic.block.BlockKMSignalRepeater;
 import com.kanomiya.mcmod.kmagic.block.BlockMagicFurnace;
@@ -33,15 +34,17 @@ public class KMBlocks {
 	// public static Block block;
 
 
-	public static void preInit(FMLPreInitializationEvent event) {
+	public static void preInit(FMLPreInitializationEvent event, KanomiyaCore core) {
 		final boolean client = event.getSide().isClient();
 
-		GameRegistryUtils.registerBlock(blockMagicStoneOre = new BlockMagicStoneOre(), ItemBlockMagicStoneOre.class, "blockMagicStoneOre", ModelUtils.getModelNameSuffixes(blockMagicStoneOre), client);
-		GameRegistryUtils.registerBlock(blockMagicFurnace = new BlockMagicFurnace(), "blockMagicFurnace", client);
+		GameRegistryUtils utils = core.getGameRegistryUtils();
 
-		GameRegistryUtils.registerBlock(blockKMSignalRepeater = new BlockKMSignalRepeater(), "blockKMSignalRepeater", client);
-		GameRegistryUtils.registerBlock(blockKMSignalPortal = new BlockKMSignalPortal(), "blockKMSignalPortal", client);
-		GameRegistryUtils.registerBlock(blockMagicKMSignalSender = new BlockMagicKMSignalSender(), "blockMagicKMSignalSender", client);
+		utils.registerBlock(blockMagicStoneOre = new BlockMagicStoneOre(), ItemBlockMagicStoneOre.class, "blockMagicStoneOre", ModelUtils.getModelNameSuffixes(blockMagicStoneOre), client);
+		utils.registerBlock(blockMagicFurnace = new BlockMagicFurnace(), "blockMagicFurnace", client);
+
+		utils.registerBlock(blockKMSignalRepeater = new BlockKMSignalRepeater(), "blockKMSignalRepeater", client);
+		utils.registerBlock(blockKMSignalPortal = new BlockKMSignalPortal(), "blockKMSignalPortal", client);
+		utils.registerBlock(blockMagicKMSignalSender = new BlockMagicKMSignalSender(), "blockMagicKMSignalSender", client);
 
 
 		// TileEntity
@@ -53,8 +56,8 @@ public class KMBlocks {
 
 	}
 
-	public static void init(FMLInitializationEvent event) {  }
-	public static void postInit(FMLPostInitializationEvent event) {  }
+	public static void init(FMLInitializationEvent event, KanomiyaCore core) {  }
+	public static void postInit(FMLPostInitializationEvent event, KanomiyaCore core) {  }
 
 
 

@@ -22,6 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.apache.logging.log4j.Logger;
 
+import com.kanomiya.mcmod.kanomiyacore.KanomiyaCore;
 import com.kanomiya.mcmod.kmagic.client.event.ClientTickEventHandler;
 import com.kanomiya.mcmod.kmagic.client.event.GuiHandler;
 import com.kanomiya.mcmod.kmagic.client.gui.GuiIngameHandler;
@@ -50,7 +51,7 @@ public class KMagic {
 	public static final String MODID = "kmagic";
 	public static final String VERSION = "alpha0.4.0";
 
-	@Mod.Instance("kmagic")
+	@Mod.Instance(MODID)
 	public static KMagic instance;
 
 	public static Logger logger;
@@ -77,12 +78,14 @@ public class KMagic {
 		}
 	};
 
+	public static KanomiyaCore core;
 
 	@EventHandler public void preInit(FMLPreInitializationEvent event) {
 		logger = event.getModLog();
+		core = new KanomiyaCore(MODID, instance);
 
 		KMKeys.init();
-		KMConfig.preInit(event);
+		KMConfig.preInit(event, core);
 
 		boolean client = event.getSide().isClient();
 
@@ -100,8 +103,8 @@ public class KMagic {
 		registerRatingStat();
 		registerMagicMaterial();
 
-		KMItems.preInit(event);
-		KMBlocks.preInit(event);
+		KMItems.preInit(event, core);
+		KMBlocks.preInit(event, core);
 
 		DimensionManager.registerProviderType(KMConfig.DIMID_KMAGIC, WorldProviderKMagic.class, false);
 		DimensionManager.registerDimension(KMConfig.DIMID_KMAGIC, KMConfig.DIMID_KMAGIC);
@@ -114,8 +117,8 @@ public class KMagic {
 		MinecraftForge.EVENT_BUS.register(MagicStatusEventHandler.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(MagicSpellEventHandler.INSTANCE);
 
-		KMItems.init(event);
-		KMBlocks.init(event);
+		KMItems.init(event, core);
+		KMBlocks.init(event, core);
 
 
 		MinecraftForge.TERRAIN_GEN_BUS.register(new PopulateChunkEventHandler());
@@ -132,8 +135,8 @@ public class KMagic {
 
 	@EventHandler public void postInit(FMLPostInitializationEvent event) {
 
-		KMItems.postInit(event);
-		KMBlocks.postInit(event);
+		KMItems.postInit(event, core);
+		KMBlocks.postInit(event, core);
 
 		// if (Loader.isModLoaded("NotEnoughItems")) { codechicken.nei.api.API. }
 

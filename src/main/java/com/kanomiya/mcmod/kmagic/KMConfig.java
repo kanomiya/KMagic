@@ -3,6 +3,8 @@ package com.kanomiya.mcmod.kmagic;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
+import com.kanomiya.mcmod.kanomiyacore.KanomiyaCore;
+
 /**
  * @author Kanomiya
  *
@@ -12,7 +14,7 @@ public class KMConfig {
 	public static int DIMID_KMAGIC = 57;
 
 
-	public static void preInit(FMLPreInitializationEvent event) {
+	public static void preInit(FMLPreInitializationEvent event, KanomiyaCore core) {
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 
 		try {

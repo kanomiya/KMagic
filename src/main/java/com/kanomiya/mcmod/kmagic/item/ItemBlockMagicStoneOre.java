@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 
-import com.kanomiya.mcmod.core.item.ItemBlockDamaged;
+import com.kanomiya.mcmod.kanomiyacore.item.ItemBlockDamaged;
 import com.kanomiya.mcmod.kmagic.block.BlockMagicStoneOre;
 
 /**
