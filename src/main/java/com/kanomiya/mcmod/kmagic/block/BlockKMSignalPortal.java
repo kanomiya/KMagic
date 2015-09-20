@@ -2,11 +2,6 @@ package com.kanomiya.mcmod.kmagic.block;
 
 import java.util.Random;
 
-import com.kanomiya.mcmod.kmagic.KMConfig;
-import com.kanomiya.mcmod.kmagic.KMagic;
-import com.kanomiya.mcmod.kmagic.tileentity.signal.TileEntityKMSignalPortal;
-import com.kanomiya.mcmod.kmagic.world.TeleporterKMagic;
-
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -19,11 +14,17 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.ServerConfigurationManager;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import com.kanomiya.mcmod.kmagic.KMConfig;
+import com.kanomiya.mcmod.kmagic.KMagic;
+import com.kanomiya.mcmod.kmagic.tileentity.signal.TileEntityKMSignalPortal;
+import com.kanomiya.mcmod.kmagic.world.TeleporterKMagic;
 
 /**
  * @author Kanomiya
@@ -46,10 +47,17 @@ public class BlockKMSignalPortal extends BlockContainer {
 	}
 
 
-	@Override public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
-		super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
+	@Override public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+	{
+		float f = (((Boolean) state.getValue(ACTIVATED))) ? 0.125f : 0f;
+		return new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() +1, pos.getY() +1 -f, pos.getZ() +1);
+	}
 
-		IBlockState state = worldIn.getBlockState(pos);
+	// @Override public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
+	@Override public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+	{
+		// super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
+		// IBlockState state = worldIn.getBlockState(pos);
 
 		if ((Boolean) state.getValue(ACTIVATED)) {
 			int targetDimId = -1;

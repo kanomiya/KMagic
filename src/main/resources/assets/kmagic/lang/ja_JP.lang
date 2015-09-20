@@ -2,6 +2,7 @@
 tile.blockDummy.name=ダミー
 item.itemDummy.name=ダミー
 
+itemGroup.kmagic=KMagic
 
 tile.blockMagicStoneOre.name=魔石入りの石
 item.itemMagicStone.name=魔石

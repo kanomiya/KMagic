@@ -1,8 +1,5 @@
 package com.kanomiya.mcmod.kmagic.network;
 
-import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
-import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusEntity;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -11,6 +8,9 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+
+import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusEntity;
 
 /**
  * @author Kanomiya

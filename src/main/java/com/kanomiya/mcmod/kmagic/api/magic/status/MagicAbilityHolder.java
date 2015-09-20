@@ -3,17 +3,17 @@ package com.kanomiya.mcmod.kmagic.api.magic.status;
 import java.util.Map;
 import java.util.Set;
 
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
-import com.kanomiya.mcmod.kmagic.KMagic;
-import com.kanomiya.mcmod.kmagic.api.magic.ability.MagicAbility;
-import com.kanomiya.mcmod.kmagic.api.magic.ability.RegistryMagicAbility;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
+
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
+import com.kanomiya.mcmod.kmagic.KMagic;
+import com.kanomiya.mcmod.kmagic.api.magic.ability.MagicAbility;
+import com.kanomiya.mcmod.kmagic.api.magic.ability.RegistryMagicAbility;
 
 /**
  * @author Kanomiya
@@ -191,8 +191,7 @@ public class MagicAbilityHolder {
 	}
 
 	public void readFromNBT(NBTTagCompound nbt) {
-		abilitySet.clear();
-		executingAbilitySet.clear();
+		clear();
 
 		NBTTagCompound nbtBase = nbt.getCompoundTag("abilities");
 
@@ -240,6 +239,12 @@ public class MagicAbilityHolder {
 
 
 		isUpdated = false;
+
+	}
+
+	public void clear() {
+		abilitySet.clear();
+		executingAbilitySet.clear();
 
 	}
 

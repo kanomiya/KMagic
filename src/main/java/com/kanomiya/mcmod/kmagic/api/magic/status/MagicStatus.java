@@ -1,14 +1,5 @@
 package com.kanomiya.mcmod.kmagic.api.magic.status;
 
-import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
-import com.kanomiya.mcmod.kmagic.api.magic.event.MagicStatusInitEvent;
-import com.kanomiya.mcmod.kmagic.api.magic.event.MpMoveEvent;
-import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterials;
-import com.kanomiya.mcmod.kmagic.api.magic.status.base.IMagicItem;
-import com.kanomiya.mcmod.kmagic.api.magic.status.base.IMagicObject;
-import com.kanomiya.mcmod.kmagic.api.magic.status.wrapper.PlayerWrapper;
-import com.kanomiya.mcmod.kmagic.api.magic.status.wrapper.StackWrapper;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -17,6 +8,16 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.common.MinecraftForge;
+
+import com.kanomiya.mcmod.kmagic.KMagic;
+import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.magic.event.MagicStatusInitEvent;
+import com.kanomiya.mcmod.kmagic.api.magic.event.MpMoveEvent;
+import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterials;
+import com.kanomiya.mcmod.kmagic.api.magic.status.base.IMagicItem;
+import com.kanomiya.mcmod.kmagic.api.magic.status.base.IMagicObject;
+import com.kanomiya.mcmod.kmagic.api.magic.status.wrapper.PlayerWrapper;
+import com.kanomiya.mcmod.kmagic.api.magic.status.wrapper.StackWrapper;
 
 /**
  * @author Kanomiya
@@ -38,6 +39,8 @@ public class MagicStatus {
 		mObj = parMObj;
 		materials = new MagicMaterials();
 		abilityHolder = new MagicAbilityHolder(this);
+
+		evaluate();
 	}
 
 	protected MagicStatus(IMagicObject parMObj, NBTTagCompound nbt) {
@@ -49,9 +52,11 @@ public class MagicStatus {
 
 	protected void clear() {
 		materials.clear();
+		abilityHolder.clear();
 	}
 
 	public void evaluate() {
+		KMagic.logger.info("is");
 		clear();
 
 		mObj.initMagicStatus(this);

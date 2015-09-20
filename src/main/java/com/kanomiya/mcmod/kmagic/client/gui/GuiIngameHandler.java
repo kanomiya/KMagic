@@ -2,11 +2,6 @@ package com.kanomiya.mcmod.kmagic.client.gui;
 
 import java.util.Random;
 
-import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
-import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
-import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusEntity;
-import com.kanomiya.mcmod.kmagic.api.magic.status.base.IMagicItem;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
@@ -19,6 +14,11 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusEntity;
+import com.kanomiya.mcmod.kmagic.api.magic.status.base.IMagicItem;
 
 // GuiIngameForge
 
@@ -45,6 +45,7 @@ public class GuiIngameHandler extends Gui {
 		int height = event.resolution.getScaledHeight();
 
 		MagicStatusEntity status = KMagicAPI.getMagicStatus(minecraft.thePlayer);
+
 
 		if (status != null) {
 			if (minecraft.playerController.shouldDrawHUD()) {

@@ -1,15 +1,14 @@
 package com.kanomiya.mcmod.kmagic.api.magic.status;
 
-import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
-import com.kanomiya.mcmod.kmagic.api.magic.status.base.IMagicObject;
-import com.kanomiya.mcmod.kmagic.magic.ability.MANaturalMpHealing;
-import com.kanomiya.mcmod.kmagic.network.MessageMagicStatusToClient;
-import com.kanomiya.mcmod.kmagic.network.PacketHandler;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
+
+import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.magic.status.base.IMagicObject;
+import com.kanomiya.mcmod.kmagic.network.MessageMagicStatusToClient;
+import com.kanomiya.mcmod.kmagic.network.PacketHandler;
 
 /**
  * @author Kanomiya
@@ -48,7 +47,6 @@ public class MagicStatusEntity extends MagicStatus implements IExtendedEntityPro
 	@Override public void evaluate() {
 		super.evaluate();
 
-		abilityHolder.addAbility(new MANaturalMpHealing(this));
 
 		/* TODO:
 		ItemStack[] inventory = entity.getInventory();

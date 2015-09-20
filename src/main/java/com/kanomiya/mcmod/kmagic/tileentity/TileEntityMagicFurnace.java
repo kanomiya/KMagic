@@ -1,12 +1,5 @@
 package com.kanomiya.mcmod.kmagic.tileentity;
 
-import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
-import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterial;
-import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterials;
-import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
-import com.kanomiya.mcmod.kmagic.api.tileentity.TileEntityMagicBase;
-import com.kanomiya.mcmod.kmagic.block.BlockMagicFurnace;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -26,6 +19,13 @@ import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterial;
+import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterials;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
+import com.kanomiya.mcmod.kmagic.api.tileentity.TileEntityMagicBase;
+import com.kanomiya.mcmod.kmagic.block.BlockMagicFurnace;
 
 /**
  * @author Kanomiya
