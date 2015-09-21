@@ -2,14 +2,8 @@ package com.kanomiya.mcmod.kmagic.api.block;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
-import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
-import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
 import com.kanomiya.mcmod.kmagic.api.tileentity.TileEntityMagicBase;
 
 /**
@@ -23,23 +17,6 @@ public abstract class BlockMagicBase extends BlockContainer {
 		super(materialIn);
 	}
 
-	@Override public final boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
-		MagicStatus statusTile = KMagicAPI.getMagicStatus(worldIn.getTileEntity(pos));
-
-		boolean flag = false;
-
-		if (statusTile != null) {
-			// TODO: Activate
-		}
-
-		flag = flag || onBlockActivated(worldIn, pos, state, statusTile, playerIn, side, hitX, hitY, hitZ);
-
-		return flag;
-	}
-
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, MagicStatus tileStatus, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
-		return false;
-	}
 
 	/*
 	@Override public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {

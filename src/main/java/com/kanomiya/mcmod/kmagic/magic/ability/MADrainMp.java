@@ -4,7 +4,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import com.kanomiya.mcmod.kmagic.KMagic;
 import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
 import com.kanomiya.mcmod.kmagic.api.magic.ability.MagicAbility;
 import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
@@ -30,7 +29,6 @@ public class MADrainMp extends MagicAbility {
 
 				if (status.getMagicObject() instanceof TileEntity) {
 					((TileEntity) status.getMagicObject()).markDirty();
-					KMagic.logger.info("interact " + status.getMp() + " / " + status.getMaxMp());
 				}
 
 			}

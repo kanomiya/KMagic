@@ -29,7 +29,6 @@ import com.kanomiya.mcmod.kmagic.KMagic;
 import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
 import com.kanomiya.mcmod.kmagic.api.magic.event.MagicStatusInitEvent;
 import com.kanomiya.mcmod.kmagic.api.magic.event.MpMoveEvent;
-import com.kanomiya.mcmod.kmagic.api.magic.status.MagicAbilityHolder;
 import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
 import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusEntity;
 import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusPlayer;
@@ -126,13 +125,9 @@ public class MagicStatusEventHandler {
 				MagicStatus status = KMagicAPI.getMagicStatus(tile);
 
 				if (status != null) {
-					MagicAbilityHolder holder = status.getAbilityHolder();
+					status.getAbilityHolder().onInteractedWith(event.world, event.entity);
 
-					holder.onInteractedWith(event.world, event.entity);
-
-					// TODO:
-					tile.markDirty();
-					event.world.markBlockForUpdate(event.pos);
+					// event.setCanceled(true);
 				}
 			}
 

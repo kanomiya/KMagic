@@ -112,7 +112,7 @@ public class MagicAbilityHolder {
 		for (MagicAbility ability: abilitySet) ability.update(worldIn);
 	}
 
-
+	// TODO: onSpawn
 	public synchronized void onSpawn(World worldIn) {
 		for (MagicAbility ability: abilitySet) ability.onSpawn(worldIn);
 	}
@@ -132,6 +132,7 @@ public class MagicAbilityHolder {
 		for (MagicAbility ability: abilitySet) ability.onFall(worldIn, event);
 	}
 
+	// TODO: onDeath
 	public synchronized void onDeath(World worldIn) {
 		for (MagicAbility ability: abilitySet) ability.onDeath(worldIn);
 	}

@@ -217,10 +217,7 @@ public class MagicStatus {
 			return new MagicStatus((IMagicObject) obj);
 		}
 
-		if (obj instanceof ItemStack) {
-			ItemStack stack = (ItemStack) obj;
-			if (stack.getItem() instanceof IMagicItem) return new MagicStatus(new StackWrapper(stack, (IMagicItem) stack.getItem()));
-		}
+		if (obj instanceof ItemStack) return newInstance((ItemStack) obj);
 
 		return null;
 	}
@@ -231,6 +228,17 @@ public class MagicStatus {
 		if (entity instanceof EntityPlayer) return new MagicStatusPlayer((EntityPlayer) entity);
 		return new MagicStatusEntity(entity);
 	}
+
+
+	public static MagicStatus newInstance(ItemStack stack) {
+		if (! (stack.getItem() instanceof IMagicItem)) return null;
+		return newInstance(new StackWrapper(stack, (IMagicItem) stack.getItem()));
+	}
+
+	public static MagicStatus newInstance(StackWrapper stackWrap) {
+		return new MagicStatus(stackWrap);
+	}
+
 
 	/**
 	 *
@@ -251,25 +259,39 @@ public class MagicStatus {
 		return null;
 	}
 
-	protected static MagicStatus loadInstance(Object obj, NBTTagCompound nbt) {
-		if (! (obj instanceof IMagicObject)) return null;
-		MagicStatus status = ((IMagicObject) obj).getMagicStatus();
+	protected static MagicStatus loadInstance(IMagicObject obj, NBTTagCompound nbt) {
+		MagicStatus status;
 
-		// 未生成の場合
-		if (status == null) {
-			status = newInstance(obj);
+		if (obj instanceof StackWrapper) {
+			status = newInstance(((StackWrapper) obj).stack);
 			status.readFromNBT(nbt);
+
+		} else {
+			status = obj.getMagicStatus();
+
+			// 未生成の場合
+			if (status == null) {
+				status = newInstance(obj);
+				status.readFromNBT(nbt);
+			}
 		}
 
 		return status;
 	}
 
 	public static MagicStatus loadInstance(TileEntity tile) {
-		return loadInstance(tile, MagicNBTUtils.getMagicNBT(tile));
+		if (! (tile instanceof IMagicObject)) return null;
+		return loadInstance((IMagicObject) tile, MagicNBTUtils.getMagicNBT(tile));
 	}
 
 	public static MagicStatus loadInstance(ItemStack stack) {
-		return loadInstance(stack, MagicNBTUtils.getMagicNBT(stack));
+		if (stack == null || ! (stack.getItem() instanceof IMagicItem)) return null;
+
+		if (MagicNBTUtils.hasMagicNBT(stack)) {
+			return loadInstance(new StackWrapper(stack, (IMagicItem) stack.getItem()), MagicNBTUtils.getMagicNBT(stack));
+		}
+
+		return newInstance(stack);
 	}
 
 

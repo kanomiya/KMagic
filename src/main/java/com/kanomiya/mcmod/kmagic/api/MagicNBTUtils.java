@@ -5,6 +5,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.Constants.NBT;
 
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
+import com.kanomiya.mcmod.kmagic.api.magic.status.base.IMagicItem;
+
 /**
  * @author Kanomiya
  *
@@ -29,18 +32,17 @@ public class MagicNBTUtils {
 	}
 
 	public static NBTTagCompound getMagicNBT(ItemStack stack) {
-		// boolean initFlag = ! hasMagicNBT(stack) && stack.getItem() instanceof IMagicItem;
+		boolean initFlag = ! hasMagicNBT(stack) && stack.getItem() instanceof IMagicItem;
 		NBTTagCompound magicNbt = getNBT(stack).getCompoundTag(KMagicAPI.STR_DATANAME);
 
-		/*
 		if (initFlag) {
-			MagicStatus status = MagicStatus.getInstance(stack);
+			MagicStatus status = MagicStatus.newInstance(stack);
+
 			status.evaluate();
 
 			status.writeToNBT(magicNbt);
-			KMagicAPI.setMagicStatus(stack, status); // TODO: 必要？
+			KMagicAPI.setMagicStatus(stack, status);
 		}
-		*/
 
 		return magicNbt;
 	}

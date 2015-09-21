@@ -28,7 +28,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import com.kanomiya.mcmod.kmagic.KMBlocks;
 import com.kanomiya.mcmod.kmagic.KMagic;
 import com.kanomiya.mcmod.kmagic.api.block.BlockMagicBase;
-import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
 import com.kanomiya.mcmod.kmagic.api.tileentity.TileEntityMagicBase;
 import com.kanomiya.mcmod.kmagic.tileentity.TileEntityMagicFurnace;
 
@@ -55,7 +54,7 @@ public class BlockMagicFurnace extends BlockMagicBase {
 
 	}
 
-	@Override public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, MagicStatus tileStatus, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
+	@Override public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
 
 		TileEntity tileEntity = worldIn.getTileEntity(pos);
 

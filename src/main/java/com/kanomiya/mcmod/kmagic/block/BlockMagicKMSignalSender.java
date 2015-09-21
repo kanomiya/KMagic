@@ -17,7 +17,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.kanomiya.mcmod.kmagic.KMagic;
 import com.kanomiya.mcmod.kmagic.api.block.BlockMagicBase;
-import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
 import com.kanomiya.mcmod.kmagic.api.tileentity.TileEntityMagicBase;
 import com.kanomiya.mcmod.kmagic.api.tileentity.signal.SignalData;
 import com.kanomiya.mcmod.kmagic.tileentity.signal.TileEntityMagicKMSignalSender;
@@ -43,18 +42,13 @@ public class BlockMagicKMSignalSender extends BlockMagicBase {
 
 	}
 
-	@Override public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, MagicStatus tileStatus, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
-
-		if (tileStatus != null && tileStatus.getMagicObject() instanceof TileEntityMagicKMSignalSender) {
-			TileEntityMagicKMSignalSender tile = (TileEntityMagicKMSignalSender) tileStatus.getMagicObject();
-			if (tile.canActivate()) {
-				tile.activate(new SignalData(1));
-			}
-
-			return true;
+	@Override public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
+		TileEntityMagicKMSignalSender tile = (TileEntityMagicKMSignalSender) worldIn.getTileEntity(pos);
+		if (tile.canActivate()) {
+			tile.activate(new SignalData(1));
 		}
 
-		return false;
+		return true;
 	}
 
 

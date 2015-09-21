@@ -18,7 +18,6 @@ import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterial;
 import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterials;
 import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
 import com.kanomiya.mcmod.kmagic.api.util.IHasModel;
-import com.kanomiya.mcmod.kmagic.client.event.GuiHandler;
 
 /**
  * @author Kanomiya
@@ -87,7 +86,7 @@ public class ItemMagicStone extends ItemMagicBase implements IHasModel {
 
 	@Override public ItemStack onItemRightClick(ItemStack stackIn, World worldIn, EntityPlayer playerIn) {
 
-		playerIn.openGui(KMagic.instance, GuiHandler.GUI_ABILITYHOLDER, worldIn, (int) playerIn.posX, (int) playerIn.posY, (int) playerIn.posZ);
+		// playerIn.openGui(KMagic.instance, GuiHandler.GUI_ABILITYHOLDER, worldIn, (int) playerIn.posX, (int) playerIn.posY, (int) playerIn.posZ);
 
 		return stackIn;
 	}
