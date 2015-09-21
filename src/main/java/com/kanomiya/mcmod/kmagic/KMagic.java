@@ -24,15 +24,17 @@ import org.apache.logging.log4j.Logger;
 
 import com.kanomiya.mcmod.kanomiyacore.KanomiyaCore;
 import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.MagicNBTUtils;
 import com.kanomiya.mcmod.kmagic.api.magic.ability.RegistryMagicAbility;
-import com.kanomiya.mcmod.kmagic.api.magic.event.MagicSpellEventHandler;
-import com.kanomiya.mcmod.kmagic.api.magic.event.MagicStatusEventHandler;
 import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterial;
 import com.kanomiya.mcmod.kmagic.api.magic.status.RegistryMSRating;
 import com.kanomiya.mcmod.kmagic.client.event.ClientTickEventHandler;
 import com.kanomiya.mcmod.kmagic.client.event.GuiHandler;
 import com.kanomiya.mcmod.kmagic.client.gui.GuiIngameHandler;
 import com.kanomiya.mcmod.kmagic.command.CommandKMagic;
+import com.kanomiya.mcmod.kmagic.event.MagicSpellEventHandler;
+import com.kanomiya.mcmod.kmagic.event.MagicStatusEventHandler;
+import com.kanomiya.mcmod.kmagic.magic.ability.MADrainMp;
 import com.kanomiya.mcmod.kmagic.magic.ability.MAFlight;
 import com.kanomiya.mcmod.kmagic.magic.ability.MANaturalMpHealing;
 import com.kanomiya.mcmod.kmagic.network.PacketHandler;
@@ -65,10 +67,10 @@ public class KMagic {
 			if (iconItemStack == null) {
 				iconItemStack = new ItemStack(getTabIconItem(), 1, 4);
 
-				NBTTagCompound nbt = KMagicAPI.getMagicNBT(iconItemStack);
+				NBTTagCompound nbt = MagicNBTUtils.getMagicNBT(iconItemStack);
 				nbt.setBoolean("invisibleMpBar", true);
 
-				KMagicAPI.setMagicNBT(iconItemStack, nbt);
+				MagicNBTUtils.setMagicNBT(iconItemStack, nbt);
 			}
 
 			return iconItemStack;
@@ -113,9 +115,10 @@ public class KMagic {
 	}
 
 	@EventHandler public void init(FMLInitializationEvent event) {
-
 		PacketHandler.init();
+
 		MinecraftForge.EVENT_BUS.register(MagicStatusEventHandler.INSTANCE);
+		FMLCommonHandler.instance().bus().register(MagicStatusEventHandler.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(MagicSpellEventHandler.INSTANCE);
 
 		KMItems.init(event, core);
@@ -160,6 +163,7 @@ public class KMagic {
 	private void registerAbility() {
 		RegistryMagicAbility.registerAbilityClass("naturalMpHealing", MANaturalMpHealing.class);
 		RegistryMagicAbility.registerAbilityClass("flight", MAFlight.class);
+		RegistryMagicAbility.registerAbilityClass("drainMp", MADrainMp.class);
 
 	}
 

@@ -5,6 +5,7 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
 
 import com.kanomiya.mcmod.kmagic.api.magic.ability.MagicAbility;
 import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
@@ -16,7 +17,6 @@ import com.kanomiya.mcmod.kmagic.api.magic.status.wrapper.PlayerWrapper;
  *
  */
 public class MAFlight extends MagicAbility {
-
 	Minecraft mc;
 
 	EntityPlayer player;
@@ -34,16 +34,11 @@ public class MAFlight extends MagicAbility {
 
 	}
 
-	@Override public boolean shouldExecute(World worldIn) { return (player != null); }
-	@Override public boolean continueExecuting(World worldIn) { return (shouldExecute(worldIn) && ! shouldRemove); }
-
-
-	@Override public void setup(World worldIn) {
-		shouldRemove = false;
-
-	}
+	@Override public boolean shouldRemove(World worldIn) { return shouldRemove; }
 
 	@Override public void update(World worldIn) {
+		if (player == null) return;
+
 		boolean allowFlying = ! (player.capabilities.isCreativeMode || player.capabilities.allowFlying);
 
 		if(! allowFlying) {
@@ -61,11 +56,12 @@ public class MAFlight extends MagicAbility {
 
 		if (! isFlying) shouldRemove = true;
 
-
-
-
+		player.fallDistance = 0f;
 	}
 
+	@Override public void onFall(World worldIn, LivingFallEvent event) {
+		event.setCanceled(true);
+	}
 
 
 	private void flight(EntityPlayerSP playerSp) {
@@ -102,14 +98,6 @@ public class MAFlight extends MagicAbility {
 		}
 
 	}
-
-
-
-	@Override public void reset(World worldIn) {
-		if (player != null) player.fallDistance = 0f;
-	}
-
-
 
 	@Override public void writeToNBT(NBTTagCompound nbt) {
 		nbt.setBoolean("isFlying", isFlying);

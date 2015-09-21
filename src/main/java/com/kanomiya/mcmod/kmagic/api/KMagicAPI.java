@@ -8,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
-import net.minecraftforge.common.util.Constants.NBT;
 
 import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterial;
 import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterialRegistry;
@@ -31,86 +30,47 @@ public class KMagicAPI {
 	//
 	// *----------------------------------------------------------------------------------------------*
 
-
-	public static boolean isMagicOwner(Entity entity) {
-		return (entity instanceof IMagicObject || entity instanceof EntityPlayer);
-	}
-
-	public static boolean isMagicOwner(ItemStack stack) {
-		if (stack == null) return false;
-		return (stack.getItem() instanceof IMagicItem);
+	public static boolean isMagicObject(Object obj) {
+		if (obj instanceof ItemStack) return (((ItemStack) obj).getItem() instanceof IMagicItem);
+		return (obj instanceof IMagicObject || obj instanceof EntityPlayer);
 	}
 
 
-	public static boolean isMagicOwner(TileEntity tileEntity) {
-		return (tileEntity instanceof IMagicObject);
-	}
 
-
-	public static MagicStatus getMagicStatus(ItemStack stack) {
-		return MagicStatus.getInstance(stack, getMagicNBT(stack));
-	}
 
 	public static void setMagicStatus(ItemStack stack, MagicStatus status) {
 		NBTTagCompound magicNbt = new NBTTagCompound();
 		status.writeToNBT(magicNbt);
-		setMagicNBT(stack, magicNbt);
+		MagicNBTUtils.setMagicNBT(stack, magicNbt);
 	}
 
-
 	public static MagicStatusPlayer getMagicStatus(EntityPlayer player) {
-		return MagicStatus.getInstance(player);
+		return (MagicStatusPlayer) MagicStatus.loadInstance(player);
 	}
 
 	public static MagicStatusEntity getMagicStatus(Entity entity) {
-		return MagicStatus.getInstance(entity);
+		// if (entity instanceof EntityPlayer) return getMagicStatus((EntityPlayer) entity);
+		return (MagicStatusEntity) MagicStatus.loadInstance(entity);
 	}
 
-	public static MagicStatus getMagicStatus(TileEntity tileEntity) {
-		return MagicStatus.getInstance(tileEntity);
+	public static MagicStatus getMagicStatus(ItemStack stack) {
+		return MagicStatus.loadInstance(stack);
+	}
+
+	public static MagicStatus getMagicStatus(TileEntity tile) {
+		return MagicStatus.loadInstance(tile);
 	}
 
 
 
-
-	protected static NBTTagCompound getNBT(ItemStack stack) {
-		if (! stack.hasTagCompound()) return new NBTTagCompound();
-		else return stack.getTagCompound();
-	}
-
-	public static boolean hasMagicNBT(ItemStack stack) {
-		return getNBT(stack).hasKey(KMagicAPI.STR_DATANAME, NBT.TAG_COMPOUND);
-	}
-
-	public static NBTTagCompound getMagicNBT(ItemStack stack) {
-		boolean initFlag = (! hasMagicNBT(stack) && isMagicOwner(stack));
-		NBTTagCompound magicNbt = getNBT(stack).getCompoundTag(KMagicAPI.STR_DATANAME);
-
-		if (initFlag) {
-			MagicStatus status = MagicStatus.getInstance(stack); //TODO: , magicNbt);
-			status.evaluate();
-
-			status.writeToNBT(magicNbt);
-			setMagicStatus(stack, status);
-		}
-
-		return magicNbt;
-	}
-
-	public static void setMagicNBT(ItemStack stack, NBTTagCompound magicNbt) {
-		NBTTagCompound stackNbt = getNBT(stack);
-		stackNbt.setTag(STR_DATANAME, magicNbt);
-
-		stack.setTagCompound(stackNbt);
-	}
 
 
 	public static ItemStack fullMp(ItemStack stack) {
-		NBTTagCompound nbt = KMagicAPI.getMagicNBT(stack);
+		NBTTagCompound nbt = MagicNBTUtils.getMagicNBT(stack);
 
 		nbt.setInteger("mp", nbt.getInteger("maxMp"));
 
-		KMagicAPI.setMagicNBT(stack, nbt);
+		MagicNBTUtils.setMagicNBT(stack, nbt);
 
 		return stack;
 	}
@@ -119,13 +79,13 @@ public class KMagicAPI {
 		if (1.0f < minRate) minRate = 1.0f;
 		if (1.0f < maxRate) maxRate = 1.0f;
 
-		NBTTagCompound nbt = KMagicAPI.getMagicNBT(stack);
+		NBTTagCompound nbt = MagicNBTUtils.getMagicNBT(stack);
 
 		int maxMp = getMaxMp(nbt);
 		int value = Math.min(maxMp, MathHelper.getRandomIntegerInRange(rand, (int) Math.floor(minRate *maxMp), (int) Math.floor(maxRate *maxMp)));
 		nbt.setInteger("mp", value);
 
-		KMagicAPI.setMagicNBT(stack, nbt);
+		MagicNBTUtils.setMagicNBT(stack, nbt);
 
 		return stack;
 	}
@@ -161,6 +121,14 @@ public class KMagicAPI {
 		return mpIsFull(status, 0);
 	}
 
+
+	public static boolean mpIsLack(MagicStatus status, int capaThreshold) {
+		return (status.getMp() <= capaThreshold);
+	}
+
+	public static boolean mpIsLack(MagicStatus status) {
+		return mpIsLack(status, 0);
+	}
 
 	// *----------------------------------------------------------------------------------------------*
 	// Mp

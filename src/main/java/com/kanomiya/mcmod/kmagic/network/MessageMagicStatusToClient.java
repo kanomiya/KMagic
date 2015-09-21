@@ -55,12 +55,11 @@ public class MessageMagicStatusToClient implements IMessage, IMessageHandler<Mes
 	public IMessage onMessageClient(MessageMagicStatusToClient message, MessageContext ctx) {
 		Entity parent = Minecraft.getMinecraft().theWorld.getEntityByID(message.entityId);
 
-		if (KMagicAPI.isMagicOwner(parent)) {
+		if (KMagicAPI.isMagicObject(parent)) {
 			MagicStatusEntity status = KMagicAPI.getMagicStatus(parent);
 
 			if (status != null) {
 				status.loadNBTData(message.nbt);
-				status.sync(true);
 			}
 		}
 

@@ -7,8 +7,6 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 
 import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
 import com.kanomiya.mcmod.kmagic.api.magic.status.base.IMagicObject;
-import com.kanomiya.mcmod.kmagic.network.MessageMagicStatusToClient;
-import com.kanomiya.mcmod.kmagic.network.PacketHandler;
 
 /**
  * @author Kanomiya
@@ -24,23 +22,15 @@ public class MagicStatusEntity extends MagicStatus implements IExtendedEntityPro
 		entity = parEntity;
 	}
 
-	public MagicStatusEntity(Entity parEntity) {
+	protected MagicStatusEntity(Entity parEntity) {
 		this((IMagicObject) parEntity, parEntity);
 	}
 
 
 	@Override public void init(Entity entity, World world) {
-		evaluate();
-		sync(world.isRemote);
 
 	}
 
-
-	@Override public void onSync(boolean client) {
-		// TODO: API外部参照
-		if (! client) PacketHandler.INSTANCE.sendToAll(new MessageMagicStatusToClient(this));
-
-	}
 
 
 

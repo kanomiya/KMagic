@@ -16,6 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.MagicNBTUtils;
 import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
 import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusEntity;
 import com.kanomiya.mcmod.kmagic.api.magic.status.base.IMagicItem;
@@ -96,7 +97,7 @@ public class GuiIngameHandler extends Gui {
 		ItemStack heldStack = minecraft.thePlayer.getHeldItem();
 
 		if (heldStack != null && heldStack.getItem() instanceof IMagicItem) {
-			NBTTagCompound magicNbt = KMagicAPI.getMagicNBT(heldStack);
+			NBTTagCompound magicNbt = MagicNBTUtils.getMagicNBT(heldStack);
 
 			int itemMp = KMagicAPI.getMp(magicNbt);
 			int itemMaxMp = KMagicAPI.getMaxMp(magicNbt);

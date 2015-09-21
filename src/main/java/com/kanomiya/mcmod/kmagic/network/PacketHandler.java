@@ -15,7 +15,8 @@ public class PacketHandler {
 
 	public static void init() {
 		INSTANCE.registerMessage(MessageMagicStatusToClient.class, MessageMagicStatusToClient.class, 0, Side.CLIENT);
-		INSTANCE.registerMessage(MessageSettingMagicSlotToServer.class, MessageSettingMagicSlotToServer.class, 1, Side.SERVER);
+		INSTANCE.registerMessage(MessageMagicStatusRequestToServer.class, MessageMagicStatusRequestToServer.class, 1, Side.SERVER);
+		INSTANCE.registerMessage(MessageSettingMagicSlotToServer.class, MessageSettingMagicSlotToServer.class, 2, Side.SERVER);
 
 	}
 

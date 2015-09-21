@@ -4,6 +4,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 
 import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
@@ -14,8 +15,8 @@ import com.kanomiya.mcmod.kmagic.api.magic.status.base.IMagicObject;
  * @author Kanomiya
  *
  */
-public abstract class TileEntityMagicBase extends TileEntity implements IMagicObject {
-	public final MagicStatus status = MagicStatus.getInstance(this);
+public abstract class TileEntityMagicBase extends TileEntity implements IMagicObject, IUpdatePlayerListBox {
+	public final MagicStatus status = MagicStatus.loadInstance(this);
 
 
 
@@ -26,15 +27,23 @@ public abstract class TileEntityMagicBase extends TileEntity implements IMagicOb
 	@Override public void initMagicStatus(MagicStatus status) {  }
 
 
+	@Override public void update() {
+		status.onUpdate(worldObj);
 
+		if (status.isUpdated()) {
+			markDirty();
+			worldObj.markBlockForUpdate(pos);
+
+			status.onSync(); // TODO: 不要？
+		}
+	}
 
 
 
 	@Override public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
 
-		NBTTagCompound customTag = getTileData();
-		status.readFromNBT(customTag.getCompoundTag(KMagicAPI.STR_DATANAME));
+		status.readFromNBT(getTileData().getCompoundTag(KMagicAPI.STR_DATANAME));
 
 	}
 

@@ -10,6 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.MagicNBTUtils;
 import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterials;
 import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
 import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusEntity;
@@ -60,18 +61,18 @@ public abstract class ItemMagicBase extends Item implements IMagicItem {
 	@Override public boolean showDurabilityBar(ItemStack stack) {
 		if (stack.stackSize != 1) return false;
 
-		NBTTagCompound magicNbt = KMagicAPI.getMagicNBT(stack);
-		return ! magicNbt.getBoolean("invisibleMpBar"); // KMagicAPI.mpIsFull(KMagicAPI.getMagicNBT(stack));
+		NBTTagCompound magicNbt = MagicNBTUtils.getMagicNBT(stack);
+		return ! magicNbt.getBoolean("invisibleMpBar"); // KMagicAPI.mpIsFull(MagicNBTUtils.getMagicNBT(stack));
 	}
 
 	@Override public double getDurabilityForDisplay(ItemStack stack) {
-		NBTTagCompound magicNbt = KMagicAPI.getMagicNBT(stack);
+		NBTTagCompound magicNbt = MagicNBTUtils.getMagicNBT(stack);
 		return KMagicAPI.hasMpCapacity(magicNbt) ? 1d -((double) KMagicAPI.getMp(magicNbt) / (double) KMagicAPI.getMaxMp(magicNbt)) : 1d;
 	}
 
 	@Override @SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stackIn) {
-		return KMagicAPI.mpIsFull(KMagicAPI.getMagicNBT(stackIn));
+		return KMagicAPI.mpIsFull(MagicNBTUtils.getMagicNBT(stackIn));
 	}
 
 

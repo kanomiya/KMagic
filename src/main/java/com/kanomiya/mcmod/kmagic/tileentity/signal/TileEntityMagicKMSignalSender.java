@@ -6,12 +6,14 @@ import net.minecraft.util.EnumFacing;
 import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
 import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterial;
 import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterials;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicAbilityHolder;
 import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
 import com.kanomiya.mcmod.kmagic.api.tileentity.TileEntityMagicBase;
 import com.kanomiya.mcmod.kmagic.api.tileentity.signal.IKMSignal;
 import com.kanomiya.mcmod.kmagic.api.tileentity.signal.SignalData;
 import com.kanomiya.mcmod.kmagic.api.tileentity.signal.SignalUtils;
 import com.kanomiya.mcmod.kmagic.block.BlockMagicKMSignalSender;
+import com.kanomiya.mcmod.kmagic.magic.ability.MADrainMp;
 
 /**
  * @author Kanomiya
@@ -34,18 +36,19 @@ public class TileEntityMagicKMSignalSender extends TileEntityMagicBase implement
 
 		materials.add(MagicMaterial.STONE, 4);
 
-		// TODO: abilities.addAbility(new MagicAbilitySendMp(status), new MARTrigger(MATActivate.class));
+		MagicAbilityHolder holder = status.getAbilityHolder();
+		holder.addAbility(new MADrainMp(status));
 
 	}
 
 	public boolean canActivate() {
-		return KMagicAPI.isFull(KMagicAPI.getMagicStatus(this).getMp(), cost);
+		return KMagicAPI.isFull(status.getMp(), cost);
 	}
 
 
 	public void activate(SignalData data) {
 
-		if (MagicStatus.dealMp(KMagicAPI.getMagicStatus(this), null, cost, false, false)) {
+		if (MagicStatus.dealMp(status, null, cost, false, false)) {
 			isActivated = true;
 
 			worldObj.setBlockState(pos, worldObj.getBlockState(pos).withProperty(BlockMagicKMSignalSender.ACTIVATED, Boolean.TRUE));

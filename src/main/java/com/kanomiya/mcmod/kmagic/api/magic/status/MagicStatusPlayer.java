@@ -11,7 +11,7 @@ import com.kanomiya.mcmod.kmagic.api.magic.status.wrapper.PlayerWrapper;
 public class MagicStatusPlayer extends MagicStatusEntity {
 	protected EntityPlayer player;
 
-	public MagicStatusPlayer(EntityPlayer parPlayer) {
+	protected MagicStatusPlayer(EntityPlayer parPlayer) {
 		super(new PlayerWrapper(parPlayer), parPlayer);
 
 		player = parPlayer;

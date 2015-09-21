@@ -21,6 +21,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.MagicNBTUtils;
 import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterial;
 import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterials;
 import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
@@ -270,7 +271,7 @@ public class TileEntityMagicFurnace extends TileEntityMagicBase implements IUpda
 	public static int getItemBurnTime(ItemStack fuelStack) {
 		if (fuelStack == null) return 0;
 
-		NBTTagCompound nbt = (KMagicAPI.hasMagicNBT(fuelStack)) ? KMagicAPI.getMagicNBT(fuelStack) : null;
+		NBTTagCompound nbt = (MagicNBTUtils.hasMagicNBT(fuelStack)) ? MagicNBTUtils.getMagicNBT(fuelStack) : null;
 
 		if (nbt != null) return KMagicAPI.getMp(nbt);
 

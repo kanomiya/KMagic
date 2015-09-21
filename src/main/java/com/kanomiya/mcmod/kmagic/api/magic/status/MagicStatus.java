@@ -9,8 +9,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.common.MinecraftForge;
 
-import com.kanomiya.mcmod.kmagic.KMagic;
 import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.MagicNBTUtils;
 import com.kanomiya.mcmod.kmagic.api.magic.event.MagicStatusInitEvent;
 import com.kanomiya.mcmod.kmagic.api.magic.event.MpMoveEvent;
 import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterials;
@@ -27,8 +27,8 @@ public class MagicStatus {
 	protected int mp = 0;
 	protected int maxMp = 0;
 
-	protected int prevmp = 0;
-	protected int prevmaxMp = 0;
+	protected int prevmp = -1;
+	protected int prevmaxMp = -1;
 
 	protected IMagicObject mObj;
 	protected final MagicMaterials materials;
@@ -43,12 +43,6 @@ public class MagicStatus {
 		evaluate();
 	}
 
-	protected MagicStatus(IMagicObject parMObj, NBTTagCompound nbt) {
-		this(parMObj);
-
-		readFromNBT(nbt);
-	}
-
 
 	protected void clear() {
 		materials.clear();
@@ -56,7 +50,6 @@ public class MagicStatus {
 	}
 
 	public void evaluate() {
-		KMagic.logger.info("is");
 		clear();
 
 		mObj.initMagicStatus(this);
@@ -64,7 +57,7 @@ public class MagicStatus {
 		MagicStatusInitEvent event = new MagicStatusInitEvent(this);
 		MinecraftForge.EVENT_BUS.post(event);
 
-		maxMp =  materials.getMpCapacity() +event.extraMaxMp;
+		maxMp = materials.getMpCapacity() +event.extraMaxMp;
 
 	}
 
@@ -85,7 +78,7 @@ public class MagicStatus {
 
 
 	public boolean isUpdated() {
-		return (mpIsUpdated() || maxMpIsUpdated());
+		return (mpIsUpdated() || maxMpIsUpdated() || abilityHolder.isUpdated);
 	}
 
 	private boolean mpIsUpdated() { return (prevmp != mp); }
@@ -96,27 +89,18 @@ public class MagicStatus {
 	// *----------------------------------------------------------------------------------------------*
 
 	public void onUpdate(World worldIn) {
-		abilityHolder.onUpdate(worldIn);
-
-		if (isUpdated()) { normalize(); sync(worldIn.isRemote); }
-	}
-
-
-	public void normalize() {
-		if (maxMp < mp) { mp = maxMp; }
+		abilityHolder.update(worldIn);
 
 	}
 
-	public void sync(boolean client) {
-		if (! client) evaluate();
 
-		onSync(client);
 
+	public void onSync() {
 		prevmp = mp;
 		prevmaxMp = maxMp;
-	}
 
-	public void onSync(boolean client) {  }
+		abilityHolder.isUpdated = false;
+	}
 
 
 	// *----------------------------------------------------------------------------------------------*
@@ -124,20 +108,24 @@ public class MagicStatus {
 	// *----------------------------------------------------------------------------------------------*
 
 	public void writeToNBT(NBTTagCompound nbt) {
+		evaluate();
+
 		nbt.setInteger("mp", mp);
 		nbt.setInteger("maxMp", maxMp);
 
 		materials.writeToNBT(nbt);
 		abilityHolder.writeToNBT(nbt);
 
+		onSync();
 	}
 
 	public void readFromNBT(NBTTagCompound nbt) {
+		clear();
+
 		mp = nbt.getInteger("mp");
 		maxMp = nbt.getInteger("maxMp");
 
-		prevmp = mp;
-		prevmaxMp = maxMp;
+		onSync();
 
 		materials.readFromNBT(nbt);
 		abilityHolder.readFromNBT(nbt);
@@ -158,40 +146,40 @@ public class MagicStatus {
 		int buyMp = (buyer == null) ? 0 : buyer.getMp();
 		int buyMaxMp = (buyer == null) ? 0 : buyer.getMaxMp();
 
-		int result1 = (vendor == null) ? 0 : venMp -amount;
-		int result2 = (buyer == null) ? 0 : buyMp +amount;
+		int venResult = (vendor == null) ? 0 : venMp -amount;
+		int buyResult = (buyer == null) ? 0 : buyMp +amount;
 
 		if (adjustable) {
-			if (result1 < 0) {
-				result2 += -result1;
-				amount -= -result1;
-				result1 = 0;
+			if (venResult < 0) {
+				buyResult += -venResult;
+				amount -= -venResult;
+				venResult = 0;
 			}
 
-			if (result2 < 0) {
-				result1 += -result2;
-				amount -= -result2;
-				result2 = 0;
+			if (buyResult < 0) {
+				venResult += -buyResult;
+				amount -= -buyResult;
+				buyResult = 0;
 			}
 
-			if (vendor != null && venMaxMp < result1) {
-				result2 -= venMaxMp -result1;
-				amount += venMaxMp -result1;
-				result1 = venMaxMp;
+			if (vendor != null && venMaxMp < venResult) {
+				buyResult -= venMaxMp -venResult;
+				amount += venMaxMp -venResult;
+				venResult = venMaxMp;
 			}
 
-			if (buyer != null && buyMaxMp < result2) {
-				result1 -= buyMaxMp -result2;
-				amount += buyMaxMp -result2;
-				result2 = buyMaxMp;
+			if (buyer != null && buyMaxMp < buyResult) {
+				venResult -= buyMaxMp -buyResult;
+				amount += buyMaxMp -buyResult;
+				buyResult = buyMaxMp;
 
 			}
 
 		}
 
 		if (amount != 0) {
-			boolean flag1 = (vendor == null) || (0 <= result1 && result1 <= venMaxMp);
-			boolean flag2 = (buyer == null) || (0 <= result2 && result2 <= buyMaxMp);
+			boolean flag1 = (vendor == null) || (0 <= venResult && venResult <= venMaxMp);
+			boolean flag2 = (buyer == null) || (0 <= buyResult && buyResult <= buyMaxMp);
 
 			if (flag1 && flag2) {
 
@@ -203,10 +191,10 @@ public class MagicStatus {
 
 							if (vendor instanceof MagicStatusPlayer) creativeFlag = ((PlayerWrapper) vendor.mObj).getPlayer().capabilities.isCreativeMode;
 
-							if (! creativeFlag) vendor.mp = result1;
+							if (! creativeFlag) vendor.mp = venResult;
 						}
 
-						if (buyer != null) buyer.mp = result2;
+						if (buyer != null) buyer.mp = buyResult;
 
 						MinecraftForge.EVENT_BUS.post(new MpMoveEvent.Post(vendor, buyer, amount));
 					}
@@ -222,42 +210,66 @@ public class MagicStatus {
 
 
 
-	public static MagicStatusPlayer getInstance(EntityPlayer player) {
-		return new MagicStatusPlayer(player);
-	}
+	protected static MagicStatus newInstance(Object obj) {
+		if (obj instanceof IMagicObject) {
+			if (obj instanceof Entity) return newInstance((Entity) obj);
 
-	public static MagicStatusEntity getInstance(Entity entity) {
-		if (! KMagicAPI.isMagicOwner(entity)) return null;
+			return new MagicStatus((IMagicObject) obj);
+		}
 
-		IExtendedEntityProperties extProp = entity.getExtendedProperties(KMagicAPI.STR_DATANAME);
-
-		if (extProp != null && extProp instanceof MagicStatusEntity) {
-			return ((MagicStatusEntity) extProp);
+		if (obj instanceof ItemStack) {
+			ItemStack stack = (ItemStack) obj;
+			if (stack.getItem() instanceof IMagicItem) return new MagicStatus(new StackWrapper(stack, (IMagicItem) stack.getItem()));
 		}
 
 		return null;
 	}
 
-	public static MagicStatus getInstance(TileEntity tileEntity) {
-		if (! KMagicAPI.isMagicOwner(tileEntity)) return null;
+	public static MagicStatusEntity newInstance(Entity entity) {
+		if (entity == null) return null;
 
-		IMagicObject mObj = ((IMagicObject) tileEntity);
+		if (entity instanceof EntityPlayer) return new MagicStatusPlayer((EntityPlayer) entity);
+		return new MagicStatusEntity(entity);
+	}
 
-		if (mObj.getMagicStatus() == null) {
-			return new MagicStatus(mObj);
+	/**
+	 *
+	 *
+	 *
+	 * @param entity
+	 * @return
+	 * 	{@link Entity#getExtendedProperties(String)}<br>
+	 * 	Propertiesが登録されていない場合はnullを返す
+	 */
+	public static MagicStatus loadInstance(Entity entity) {
+		if (entity == null) return null;
+
+		IExtendedEntityProperties properties = entity.getExtendedProperties(KMagicAPI.STR_DATANAME);
+
+		if (properties instanceof MagicStatus) return (MagicStatus) properties;
+
+		return null;
+	}
+
+	protected static MagicStatus loadInstance(Object obj, NBTTagCompound nbt) {
+		if (! (obj instanceof IMagicObject)) return null;
+		MagicStatus status = ((IMagicObject) obj).getMagicStatus();
+
+		// 未生成の場合
+		if (status == null) {
+			status = newInstance(obj);
+			status.readFromNBT(nbt);
 		}
 
-		return mObj.getMagicStatus();
+		return status;
 	}
 
-	public static MagicStatus getInstance(ItemStack stack) {
-		if (! KMagicAPI.isMagicOwner(stack)) return null;
-		return new MagicStatus(new StackWrapper(stack, (IMagicItem) stack.getItem()));
+	public static MagicStatus loadInstance(TileEntity tile) {
+		return loadInstance(tile, MagicNBTUtils.getMagicNBT(tile));
 	}
 
-	public static MagicStatus getInstance(ItemStack stack, NBTTagCompound nbt) {
-		if (! KMagicAPI.isMagicOwner(stack)) return null;
-		return new MagicStatus(new StackWrapper(stack, (IMagicItem) stack.getItem()), nbt);
+	public static MagicStatus loadInstance(ItemStack stack) {
+		return loadInstance(stack, MagicNBTUtils.getMagicNBT(stack));
 	}
 
 

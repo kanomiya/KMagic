@@ -1,4 +1,4 @@
-package com.kanomiya.mcmod.kmagic.api.magic.event;
+package com.kanomiya.mcmod.kmagic.event;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
@@ -53,10 +53,12 @@ public class MagicSpellEventHandler {
 
 	@SubscribeEvent public void onLivingFall(LivingFallEvent event) {
 
-		if (KMagicAPI.isMagicOwner(event.entity)) {
+		if (KMagicAPI.isMagicObject(event.entity)) {
 			MagicStatusEntity status = KMagicAPI.getMagicStatus(event.entity);
 
-			// TODO: if (status != null && status.getMagicAttributes().hasMagicAttribute(MAFlight.class)) event.setCanceled(true);
+			if (status != null) status.getAbilityHolder().onFall(event.entity.worldObj, event);
+
+			// TODO: if (status != null && status.getMagicAttributes().hasMagicAttribute(MAFlight.class))
 
 
 		}

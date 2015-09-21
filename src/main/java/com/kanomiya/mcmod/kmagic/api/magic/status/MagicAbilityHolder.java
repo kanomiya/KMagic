@@ -3,17 +3,21 @@ package com.kanomiya.mcmod.kmagic.api.magic.status;
 import java.util.Map;
 import java.util.Set;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.kanomiya.mcmod.kmagic.KMagic;
 import com.kanomiya.mcmod.kmagic.api.magic.ability.MagicAbility;
 import com.kanomiya.mcmod.kmagic.api.magic.ability.RegistryMagicAbility;
+import com.kanomiya.mcmod.kmagic.event.MagicStatusEventHandler;
 
 /**
  * @author Kanomiya
@@ -21,7 +25,6 @@ import com.kanomiya.mcmod.kmagic.api.magic.ability.RegistryMagicAbility;
  */
 public class MagicAbilityHolder {
 	public final Set<MagicAbility> abilitySet;
-	protected Set<MagicAbility> executingAbilitySet;
 
 	protected final MagicAbility[] slotToAbility;
 
@@ -32,7 +35,6 @@ public class MagicAbilityHolder {
 		status = parStatus;
 
 		abilitySet = Sets.newConcurrentHashSet();
-		executingAbilitySet = Sets.newConcurrentHashSet();
 
 		slotToAbility = new MagicAbility[10];
 	}
@@ -50,9 +52,6 @@ public class MagicAbilityHolder {
 
 
 
-
-	private Set<MagicAbility> removeSet = Sets.newConcurrentHashSet();
-
 	public void addAbility(MagicAbility parAbility) {
 		abilitySet.add(parAbility);
 
@@ -60,7 +59,6 @@ public class MagicAbilityHolder {
 	}
 
 	public void removeAbility(MagicAbility parAbility) {
-		executingAbilitySet.remove(parAbility);
 		abilitySet.remove(parAbility);
 
 		for (int i=0; i<slotToAbility.length; i++) {
@@ -98,17 +96,7 @@ public class MagicAbilityHolder {
 
 	public synchronized void setupAbilityInSlot(int slotNum, boolean state, World worldIn) {
 		if (0 <= slotNum && slotNum < slotToAbility.length) {
-			MagicAbility ability = slotToAbility[slotNum];
-
-			if (state && ! executingAbilitySet.contains(ability))
-			{
-				ability.setup(worldIn);
-				executingAbilitySet.add(ability);
-			}
-			else if (! state && executingAbilitySet.contains(ability))
-			{
-				removeSet.add(ability);
-			}
+			// slotToAbility[slotNum] = ability;
 
 			isUpdated = true;
 
@@ -117,41 +105,35 @@ public class MagicAbilityHolder {
 	}
 
 
-	public synchronized void onUpdate(World worldIn) {
+
+	public synchronized void update(World worldIn) {
 		if (worldIn == null) return ;
 
-		for (MagicAbility ability: removeSet) {
-			ability.reset(worldIn);
-			executingAbilitySet.remove(ability);
-		}
-
-		removeSet.clear();
-
-		for (MagicAbility ability: abilitySet) {
-			if (! executingAbilitySet.contains(ability) && ability.shouldExecute(worldIn)) {
-				ability.setup(worldIn);
-				executingAbilitySet.add(ability);
-			}
-		}
+		for (MagicAbility ability: abilitySet) ability.update(worldIn);
+	}
 
 
+	public synchronized void onSpawn(World worldIn) {
+		for (MagicAbility ability: abilitySet) ability.onSpawn(worldIn);
+	}
 
+	/**
+	 *
+	 * @see MagicStatusEventHandler#onPlayerInteractEvent(PlayerInteractEvent)
+	 * @see MagicStatusEventHandler#onEntityInteractEvent(PlayerInteractEvent)
+	 * @param worldIn
+	 * @param event
+	 */
+	public synchronized void onInteractedWith(World worldIn, Entity interactor) {
+		for (MagicAbility ability: abilitySet) ability.onInteractedWith(worldIn, interactor);
+	}
 
-		for (MagicAbility ability: executingAbilitySet) {
-			if (ability.continueExecuting(worldIn)) ability.update(worldIn);
-			else removeSet.add(ability);
-		}
+	public synchronized void onFall(World worldIn, LivingFallEvent event) {
+		for (MagicAbility ability: abilitySet) ability.onFall(worldIn, event);
+	}
 
-
-
-
-
-		for (MagicAbility ability: removeSet) {
-			ability.reset(worldIn);
-			executingAbilitySet.remove(ability);
-		}
-
-		removeSet.clear();
+	public synchronized void onDeath(World worldIn) {
+		for (MagicAbility ability: abilitySet) ability.onDeath(worldIn);
 	}
 
 
@@ -166,7 +148,6 @@ public class MagicAbilityHolder {
 			NBTTagCompound nbtAbility = new NBTTagCompound();
 
 			nbtAbility.setString("id", RegistryMagicAbility.getAbilityId(ability));
-			nbtAbility.setBoolean("isExecuting", executingAbilitySet.contains(ability));
 
 			NBTTagCompound nbtAbilityData = new NBTTagCompound();
 			ability.writeToNBT(nbtAbilityData);;
@@ -207,11 +188,6 @@ public class MagicAbilityHolder {
 			MagicAbility ability = RegistryMagicAbility.getAbilityInstance(id, status);
 
 			if (ability != null) {
-
-				if (entryNbt.getBoolean("isExecuting")) {
-					executingAbilitySet.add(ability);
-				}
-
 				ability.readFromNBT(entryNbt.getCompoundTag("data"));
 
 				abilitySet.add(ability);
@@ -244,7 +220,6 @@ public class MagicAbilityHolder {
 
 	public void clear() {
 		abilitySet.clear();
-		executingAbilitySet.clear();
 
 	}
 
