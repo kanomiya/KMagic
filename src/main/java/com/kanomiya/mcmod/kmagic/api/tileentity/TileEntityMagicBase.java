@@ -30,12 +30,6 @@ public abstract class TileEntityMagicBase extends TileEntity implements IMagicOb
 	@Override public void update() {
 		status.onUpdate(worldObj);
 
-		if (status.isUpdated()) {
-			markDirty();
-			worldObj.markBlockForUpdate(pos);
-
-			status.onSync(); // TODO: 不要？
-		}
 	}
 
 

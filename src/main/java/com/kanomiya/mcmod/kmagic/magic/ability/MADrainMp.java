@@ -1,7 +1,6 @@
 package com.kanomiya.mcmod.kmagic.magic.ability;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
@@ -26,11 +25,6 @@ public class MADrainMp extends MagicAbility {
 
 			if (! KMagicAPI.mpIsLack(intrStatus)) {
 				MagicStatus.dealMp(intrStatus, status, 1, false, false);
-
-				if (status.getMagicObject() instanceof TileEntity) {
-					((TileEntity) status.getMagicObject()).markDirty();
-				}
-
 			}
 
 		}
