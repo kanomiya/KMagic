@@ -2,12 +2,12 @@ package com.kanomiya.mcmod.kmagic.world.gen.structure;
 
 import java.util.Random;
 
-import com.kanomiya.mcmod.kmagic.world.gen.biome.BiomeRichMEManager;
-
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.StructureStart;
+
+import com.kanomiya.mcmod.kmagic.world.gen.biome.BiomeRichMEManager;
 
 // MapGenScatteredFeature
 

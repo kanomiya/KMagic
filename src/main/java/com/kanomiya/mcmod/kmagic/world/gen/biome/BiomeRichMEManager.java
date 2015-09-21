@@ -3,9 +3,6 @@ package com.kanomiya.mcmod.kmagic.world.gen.biome;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.kanomiya.mcmod.kmagic.KMBlocks;
-import com.kanomiya.mcmod.kmagic.block.BlockMagicStoneOre;
-
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -16,6 +13,9 @@ import net.minecraftforge.common.BiomeManager.BiomeEntry;
 import net.minecraftforge.common.BiomeManager.BiomeType;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
+
+import com.kanomiya.mcmod.kmagic.KMBlocks;
+import com.kanomiya.mcmod.kmagic.block.BlockMagicStoneOre;
 
 /**
  * @author Kanomiya

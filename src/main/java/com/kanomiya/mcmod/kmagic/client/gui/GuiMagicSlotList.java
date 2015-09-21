@@ -5,15 +5,15 @@ package com.kanomiya.mcmod.kmagic.client.gui;
 
 import java.util.List;
 
-import com.google.common.collect.Lists;
-import com.kanomiya.mcmod.kmagic.api.magic.ability.MagicAbility;
-import com.kanomiya.mcmod.kmagic.api.magic.status.MagicAbilityHolder;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiListExtended;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import com.google.common.collect.Lists;
+import com.kanomiya.mcmod.kmagic.api.magic.ability.MagicAbility;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicAbilityHolder;
 
 /**
  * @author Kanomiya

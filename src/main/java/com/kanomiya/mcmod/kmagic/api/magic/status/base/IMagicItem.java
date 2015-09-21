@@ -1,11 +1,11 @@
 package com.kanomiya.mcmod.kmagic.api.magic.status.base;
 
+import net.minecraft.item.ItemStack;
+
 import com.kanomiya.mcmod.kmagic.api.magic.material.IHasMagicMaterial;
 import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
 import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusEntity;
 import com.kanomiya.mcmod.kmagic.api.magic.status.wrapper.StackWrapper;
-
-import net.minecraft.item.ItemStack;
 
 /**
  * @author Kanomiya

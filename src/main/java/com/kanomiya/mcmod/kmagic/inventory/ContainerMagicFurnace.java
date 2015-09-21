@@ -1,7 +1,5 @@
 package com.kanomiya.mcmod.kmagic.inventory;
 
-import com.kanomiya.mcmod.kmagic.tileentity.TileEntityMagicFurnace;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -13,6 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import com.kanomiya.mcmod.kmagic.tileentity.TileEntityMagicFurnace;
 
 /**
  * @author Kanomiya

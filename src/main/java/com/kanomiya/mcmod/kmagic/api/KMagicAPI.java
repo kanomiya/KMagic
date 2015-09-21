@@ -2,14 +2,6 @@ package com.kanomiya.mcmod.kmagic.api;
 
 import java.util.Random;
 
-import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterial;
-import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterialRegistry;
-import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
-import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusEntity;
-import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusPlayer;
-import com.kanomiya.mcmod.kmagic.api.magic.status.base.IMagicItem;
-import com.kanomiya.mcmod.kmagic.api.magic.status.base.IMagicObject;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -17,6 +9,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.util.Constants.NBT;
+
+import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterial;
+import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterialRegistry;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusEntity;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusPlayer;
+import com.kanomiya.mcmod.kmagic.api.magic.status.base.IMagicItem;
+import com.kanomiya.mcmod.kmagic.api.magic.status.base.IMagicObject;
 
 /**
 *

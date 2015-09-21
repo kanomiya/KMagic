@@ -1,15 +1,15 @@
 package com.kanomiya.mcmod.kmagic.api.magic.event;
 
-import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
-import com.kanomiya.mcmod.kmagic.api.magic.spell.InstantParser;
-import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
-import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusEntity;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.magic.spell.InstantParser;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusEntity;
 
 /**
  * @author Kanomiya

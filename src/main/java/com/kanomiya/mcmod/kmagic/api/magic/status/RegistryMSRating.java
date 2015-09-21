@@ -2,11 +2,11 @@ package com.kanomiya.mcmod.kmagic.api.magic.status;
 
 import java.util.Map;
 
-import com.google.common.collect.Maps;
-
 import net.minecraft.stats.Achievement;
 import net.minecraft.stats.StatBase;
 import net.minecraft.stats.StatisticsFile;
+
+import com.google.common.collect.Maps;
 
 /**
  * @author Kanomiya

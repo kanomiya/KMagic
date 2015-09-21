@@ -1,8 +1,8 @@
 package com.kanomiya.mcmod.kmagic.api.magic.status;
 
-import com.kanomiya.mcmod.kmagic.api.magic.status.wrapper.PlayerWrapper;
-
 import net.minecraft.entity.player.EntityPlayer;
+
+import com.kanomiya.mcmod.kmagic.api.magic.status.wrapper.PlayerWrapper;
 
 /**
  * @author Kanomiya

@@ -1,13 +1,5 @@
 package com.kanomiya.mcmod.kmagic.api.magic.event;
 
-import com.kanomiya.mcmod.kmagic.KMagic;
-import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
-import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
-import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusEntity;
-import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusPlayer;
-import com.kanomiya.mcmod.kmagic.api.magic.status.RegistryMSRating;
-import com.kanomiya.mcmod.kmagic.stat.MagicStatList;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -19,6 +11,14 @@ import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import com.kanomiya.mcmod.kmagic.KMagic;
+import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusEntity;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusPlayer;
+import com.kanomiya.mcmod.kmagic.api.magic.status.RegistryMSRating;
+import com.kanomiya.mcmod.kmagic.stat.MagicStatList;
 
 /**
  * @author Kanomiya

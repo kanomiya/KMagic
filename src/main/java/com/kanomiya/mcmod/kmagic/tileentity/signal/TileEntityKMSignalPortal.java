@@ -1,10 +1,10 @@
 package com.kanomiya.mcmod.kmagic.tileentity.signal;
 
+import net.minecraft.util.EnumFacing;
+
 import com.kanomiya.mcmod.kmagic.api.tileentity.signal.IKMSignal;
 import com.kanomiya.mcmod.kmagic.api.tileentity.signal.SignalData;
 import com.kanomiya.mcmod.kmagic.block.BlockKMSignalPortal;
-
-import net.minecraft.util.EnumFacing;
 
 /**
  * @author Kanomiya

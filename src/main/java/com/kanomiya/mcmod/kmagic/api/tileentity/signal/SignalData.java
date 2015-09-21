@@ -2,9 +2,9 @@ package com.kanomiya.mcmod.kmagic.api.tileentity.signal;
 
 import java.util.List;
 
-import com.google.common.collect.Lists;
-
 import net.minecraft.util.EnumFacing;
+
+import com.google.common.collect.Lists;
 
 /**
  * @author Kanomiya

@@ -2,15 +2,6 @@ package com.kanomiya.mcmod.kmagic.item;
 
 import java.util.List;
 
-import com.kanomiya.mcmod.kmagic.KMagic;
-import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
-import com.kanomiya.mcmod.kmagic.api.item.ItemMagicBase;
-import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterial;
-import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterials;
-import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
-import com.kanomiya.mcmod.kmagic.api.util.IHasModel;
-import com.kanomiya.mcmod.kmagic.client.event.GuiHandler;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -19,6 +10,15 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import com.kanomiya.mcmod.kmagic.KMagic;
+import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.item.ItemMagicBase;
+import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterial;
+import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterials;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
+import com.kanomiya.mcmod.kmagic.api.util.IHasModel;
+import com.kanomiya.mcmod.kmagic.client.event.GuiHandler;
 
 /**
  * @author Kanomiya

@@ -2,13 +2,13 @@ package com.kanomiya.mcmod.kmagic.api.magic.spell;
 
 import java.util.Map;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.world.World;
+
 import com.google.common.collect.Maps;
 import com.kanomiya.mcmod.kmagic.api.magic.spell.instant.InstantMagicBase;
 import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
 import com.kanomiya.mcmod.kmagic.magic.spell.instant.MagicExplosion;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.world.World;
 
 /**
  *

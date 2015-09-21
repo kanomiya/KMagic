@@ -1,9 +1,9 @@
 package com.kanomiya.mcmod.kmagic.api.magic.event;
 
-import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
-
 import net.minecraftforge.fml.common.eventhandler.Cancelable;
 import net.minecraftforge.fml.common.eventhandler.Event;
+
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
 
 /**
  * @author Kanomiya

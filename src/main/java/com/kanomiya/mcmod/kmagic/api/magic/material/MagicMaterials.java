@@ -3,13 +3,13 @@ package com.kanomiya.mcmod.kmagic.api.magic.material;
 import java.util.Collections;
 import java.util.List;
 
-import com.google.common.collect.Lists;
-import com.kanomiya.mcmod.kmagic.api.magic.status.base.IMagicItem;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraftforge.common.util.Constants.NBT;
+
+import com.google.common.collect.Lists;
+import com.kanomiya.mcmod.kmagic.api.magic.status.base.IMagicItem;
 
 /**
  * @author Kanomiya

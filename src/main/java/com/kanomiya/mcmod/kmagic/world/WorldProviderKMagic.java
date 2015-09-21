@@ -1,12 +1,12 @@
 package com.kanomiya.mcmod.kmagic.world;
 
+import net.minecraft.world.WorldProvider;
+import net.minecraft.world.chunk.IChunkProvider;
+
 import com.kanomiya.mcmod.kmagic.KMConfig;
 import com.kanomiya.mcmod.kmagic.world.chunk.ChunkProviderKMagic;
 import com.kanomiya.mcmod.kmagic.world.chunk.WorldChunkManagerKMagic;
 import com.kanomiya.mcmod.kmagic.world.gen.biome.BiomeRichMEManager;
-
-import net.minecraft.world.WorldProvider;
-import net.minecraft.world.chunk.IChunkProvider;
 
 /**
  * @author Kanomiya

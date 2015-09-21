@@ -37,6 +37,7 @@ public class MagicStatusEntity extends MagicStatus implements IExtendedEntityPro
 
 
 	@Override public void onSync(boolean client) {
+		// TODO: API外部参照
 		if (! client) PacketHandler.INSTANCE.sendToAll(new MessageMagicStatusToClient(this));
 
 	}

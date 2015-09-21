@@ -1,14 +1,14 @@
 package com.kanomiya.mcmod.kmagic.client.gui;
 
-import com.kanomiya.mcmod.kmagic.inventory.ContainerMagicFurnace;
-import com.kanomiya.mcmod.kmagic.tileentity.TileEntityMagicFurnace;
-
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import com.kanomiya.mcmod.kmagic.inventory.ContainerMagicFurnace;
+import com.kanomiya.mcmod.kmagic.tileentity.TileEntityMagicFurnace;
 
 /**
  * @author Kanomiya

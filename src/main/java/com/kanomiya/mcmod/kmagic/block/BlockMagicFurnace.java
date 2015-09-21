@@ -2,13 +2,6 @@ package com.kanomiya.mcmod.kmagic.block;
 
 import java.util.Random;
 
-import com.kanomiya.mcmod.kmagic.KMBlocks;
-import com.kanomiya.mcmod.kmagic.KMagic;
-import com.kanomiya.mcmod.kmagic.api.block.BlockMagicBase;
-import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
-import com.kanomiya.mcmod.kmagic.api.tileentity.TileEntityMagicBase;
-import com.kanomiya.mcmod.kmagic.tileentity.TileEntityMagicFurnace;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -31,6 +24,13 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import com.kanomiya.mcmod.kmagic.KMBlocks;
+import com.kanomiya.mcmod.kmagic.KMagic;
+import com.kanomiya.mcmod.kmagic.api.block.BlockMagicBase;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
+import com.kanomiya.mcmod.kmagic.api.tileentity.TileEntityMagicBase;
+import com.kanomiya.mcmod.kmagic.tileentity.TileEntityMagicFurnace;
 
 /**
  * @author Kanomiya

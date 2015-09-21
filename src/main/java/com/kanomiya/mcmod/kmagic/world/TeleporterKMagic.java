@@ -2,8 +2,6 @@ package com.kanomiya.mcmod.kmagic.world;
 
 import java.util.Random;
 
-import com.kanomiya.mcmod.kmagic.world.gen.structure.PopulateChunkEventHandler;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
@@ -11,6 +9,8 @@ import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureStart;
+
+import com.kanomiya.mcmod.kmagic.world.gen.structure.PopulateChunkEventHandler;
 
 /**
  * @author Kanomiya

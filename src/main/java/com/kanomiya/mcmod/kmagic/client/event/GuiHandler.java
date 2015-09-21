@@ -1,16 +1,16 @@
 package com.kanomiya.mcmod.kmagic.client.event;
 
-import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
-import com.kanomiya.mcmod.kmagic.client.gui.GuiAbilityHolder;
-import com.kanomiya.mcmod.kmagic.client.gui.GuiMagicFurnace;
-import com.kanomiya.mcmod.kmagic.inventory.ContainerMagicFurnace;
-import com.kanomiya.mcmod.kmagic.tileentity.TileEntityMagicFurnace;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
+
+import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.client.gui.GuiAbilityHolder;
+import com.kanomiya.mcmod.kmagic.client.gui.GuiMagicFurnace;
+import com.kanomiya.mcmod.kmagic.inventory.ContainerMagicFurnace;
+import com.kanomiya.mcmod.kmagic.tileentity.TileEntityMagicFurnace;
 
 /**
  * @author Kanomiya

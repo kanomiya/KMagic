@@ -4,12 +4,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
-import com.kanomiya.mcmod.kmagic.KMItems;
-import com.kanomiya.mcmod.kmagic.KMagic;
-import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
-import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterial;
-import com.kanomiya.mcmod.kmagic.api.util.IHasModel;
-
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -25,6 +19,12 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import com.kanomiya.mcmod.kmagic.KMItems;
+import com.kanomiya.mcmod.kmagic.KMagic;
+import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
+import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterial;
+import com.kanomiya.mcmod.kmagic.api.util.IHasModel;
 
 /**
  * @author Kanomiya

@@ -1,5 +1,8 @@
 package com.kanomiya.mcmod.kmagic.tileentity.signal;
 
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
+
 import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
 import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterial;
 import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterials;
@@ -9,9 +12,6 @@ import com.kanomiya.mcmod.kmagic.api.tileentity.signal.IKMSignal;
 import com.kanomiya.mcmod.kmagic.api.tileentity.signal.SignalData;
 import com.kanomiya.mcmod.kmagic.api.tileentity.signal.SignalUtils;
 import com.kanomiya.mcmod.kmagic.block.BlockMagicKMSignalSender;
-
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
 
 /**
  * @author Kanomiya

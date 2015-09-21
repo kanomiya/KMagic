@@ -1,11 +1,11 @@
 package com.kanomiya.mcmod.kmagic.magic.spell.instant;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.world.World;
+
 import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
 import com.kanomiya.mcmod.kmagic.api.magic.spell.instant.InstantMagicBase;
 import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.world.World;
 
 /**
  * @author Kanomiya

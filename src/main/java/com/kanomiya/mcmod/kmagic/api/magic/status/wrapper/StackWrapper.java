@@ -1,12 +1,12 @@
 package com.kanomiya.mcmod.kmagic.api.magic.status.wrapper;
 
+import net.minecraft.item.ItemStack;
+
 import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
 import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
 import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatusEntity;
 import com.kanomiya.mcmod.kmagic.api.magic.status.base.IMagicItem;
 import com.kanomiya.mcmod.kmagic.api.magic.status.base.IMagicObject;
-
-import net.minecraft.item.ItemStack;
 
 /**
  * @author Kanomiya

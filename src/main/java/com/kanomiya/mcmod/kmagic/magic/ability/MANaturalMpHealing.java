@@ -1,10 +1,10 @@
 package com.kanomiya.mcmod.kmagic.magic.ability;
 
-import com.kanomiya.mcmod.kmagic.api.magic.ability.MagicAbility;
-import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
+import com.kanomiya.mcmod.kmagic.api.magic.ability.MagicAbility;
+import com.kanomiya.mcmod.kmagic.api.magic.status.MagicStatus;
 
 /**
  * @author Kanomiya
