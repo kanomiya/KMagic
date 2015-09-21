@@ -8,23 +8,17 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.particle.EntityFX;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.management.ServerConfigurationManager;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.kanomiya.mcmod.kmagic.KMConfig;
 import com.kanomiya.mcmod.kmagic.KMagic;
 import com.kanomiya.mcmod.kmagic.tileentity.signal.TileEntityKMSignalPortal;
-import com.kanomiya.mcmod.kmagic.world.TeleporterKMagic;
 
 /**
  * @author Kanomiya
@@ -56,41 +50,11 @@ public class BlockKMSignalPortal extends BlockContainer {
 	// @Override public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
 	@Override public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	{
-		// super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
-		// IBlockState state = worldIn.getBlockState(pos);
+
+		if (entityIn instanceof EntityFX) return;
 
 		if ((Boolean) state.getValue(ACTIVATED)) {
-			int targetDimId = -1;
-
-			if (entityIn.dimension == 0) targetDimId = KMConfig.DIMID_KMAGIC;
-			else if (entityIn.dimension == KMConfig.DIMID_KMAGIC) targetDimId = 0;
-
-			if (targetDimId == -1) return ;
-			if (0 < entityIn.timeUntilPortal) return ;
-
-
-			entityIn.timeUntilPortal = entityIn.getPortalCooldown();
-			entityIn.setInPortal();
-
-			// BlockPortal
-
-				MinecraftServer mcServer = MinecraftServer.getServer();
-
-				ServerConfigurationManager scmanager = mcServer.getConfigurationManager();
-				// WorldServer worldServer = mcServer.worldServerForDimension(entityIn.dimension);
-				WorldServer targetWorldServer = mcServer.worldServerForDimension(targetDimId);
-
-				if (! (entityIn instanceof EntityPlayerSP)) {
-
-					if (entityIn instanceof EntityPlayerMP) {
-						scmanager.transferPlayerToDimension((EntityPlayerMP) entityIn, targetDimId, new TeleporterKMagic(targetWorldServer));
-
-					} else {
-						// TODO: scmanager.transferEntityToWorld(entityIn, targetDimId, worldServer, targetWorldServer, new TeleporterKMagic(targetWorldServer));
-						// entityIn.travelToDimension(targetDimId);
-					}
-
-				}
+			((TileEntityKMSignalPortal) worldIn.getTileEntity(pos)).action(entityIn);
 
 
 			/*
@@ -110,7 +74,6 @@ public class BlockKMSignalPortal extends BlockContainer {
 
 		}
 
-		// BlockPressurePlate
 
 	}
 

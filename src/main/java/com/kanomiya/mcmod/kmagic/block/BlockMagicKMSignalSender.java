@@ -48,7 +48,7 @@ public class BlockMagicKMSignalSender extends BlockMagicBase {
 		if (tileStatus != null && tileStatus.getMagicObject() instanceof TileEntityMagicKMSignalSender) {
 			TileEntityMagicKMSignalSender tile = (TileEntityMagicKMSignalSender) tileStatus.getMagicObject();
 			if (tile.canActivate()) {
-				tile.activate(new SignalData(0));
+				tile.activate(new SignalData(1));
 			}
 
 			return true;

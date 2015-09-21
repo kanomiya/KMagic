@@ -3,6 +3,7 @@ package com.kanomiya.mcmod.kmagic.tileentity.signal;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 
+import com.kanomiya.mcmod.kanomiyacore.util.bit.BitFieldHelper;
 import com.kanomiya.mcmod.kmagic.api.KMagicAPI;
 import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterial;
 import com.kanomiya.mcmod.kmagic.api.magic.material.MagicMaterials;
@@ -59,6 +60,8 @@ public class TileEntityMagicKMSignalSender extends TileEntityMagicBase implement
 	}
 
 	@Override public boolean receiveSignal(SignalData data, EnumFacing from) {
+		worldObj.setBlockState(pos, worldObj.getBlockState(pos).withProperty(BlockMagicKMSignalSender.ACTIVATED, BitFieldHelper.intToBool(data.getData())));
+
 		return true;
 	}
 

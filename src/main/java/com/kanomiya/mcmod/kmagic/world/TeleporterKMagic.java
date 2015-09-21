@@ -2,6 +2,7 @@ package com.kanomiya.mcmod.kmagic.world;
 
 import java.util.Random;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
@@ -10,6 +11,11 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureStart;
 
+import com.kanomiya.mcmod.kmagic.KMBlocks;
+import com.kanomiya.mcmod.kmagic.api.tileentity.signal.IKMSignal;
+import com.kanomiya.mcmod.kmagic.api.tileentity.signal.SignalData;
+import com.kanomiya.mcmod.kmagic.api.tileentity.signal.SignalUtils;
+import com.kanomiya.mcmod.kmagic.block.BlockKMSignalPortal;
 import com.kanomiya.mcmod.kmagic.world.gen.structure.PopulateChunkEventHandler;
 
 /**
@@ -42,7 +48,6 @@ public class TeleporterKMagic extends Teleporter {
 		BlockPos portalPos = new BlockPos(portalX, portalY, portalZ);
 		portalPos = worldServerInstance.getTopSolidOrLiquidBlock(portalPos);
 
-		/*
 		int searchSize = 16*8;
 
 		for (int i=-searchSize; i<=searchSize; i++) {
@@ -50,7 +55,12 @@ public class TeleporterKMagic extends Teleporter {
 				for (int k=-searchSize; k<=searchSize; k++) {
 					BlockPos pos = portalPos.add(i, j, k);
 					IBlockState state = worldServerInstance.getBlockState(pos);
-					if (state.getBlock() == KMBlocks.blockKMSignalPortal && (Boolean) state.getValue(BlockKMSignalPortal.ACTIVATED)) {
+					if (state.getBlock() == KMBlocks.blockKMSignalPortal) {
+						if ((Boolean) state.getValue(BlockKMSignalPortal.ACTIVATED)) {
+							worldServerInstance.setBlockState(pos, state.withProperty(BlockKMSignalPortal.ACTIVATED, Boolean.FALSE));
+							SignalUtils.sendSignal(new SignalData(0), worldServerInstance, (IKMSignal) worldServerInstance.getTileEntity(pos), pos);
+						}
+
 						entityIn.setPosition(pos.getX() +0.5d, pos.getY() +1, pos.getZ() +0.5d);
 
 						flag = true;
@@ -58,7 +68,6 @@ public class TeleporterKMagic extends Teleporter {
 				}
 			}
 		}
-		*/
 
 		if (! flag) {
 			StructureStart start = PopulateChunkEventHandler.mapGenMagicGate.getStructureStart(portalX /16, portalZ /16);
